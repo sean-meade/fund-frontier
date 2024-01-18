@@ -26,7 +26,7 @@ DATABASE_URL = os.environ.get('DATABASE_URL')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
-ALLOWED_HOSTS = ['8000-qburn93-fundfrontier-zlme3vsnzam.ws-eu107.gitpod.io']
+ALLOWED_HOSTS = ['8000-qburn93-fundfrontier-zlme3vsnzam.ws-eu107.gitpod.io', '127.0.0.1']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
