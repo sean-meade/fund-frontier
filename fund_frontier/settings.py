@@ -76,6 +76,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fund_frontier.wsgi.application'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.gitpod.io',
+    'https://8000-qburn93-fundfrontier-zlme3vsnzam.ws-eu107.gitpod.io'
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
