@@ -1,5 +1,3 @@
-# models.py
-
 from django.db import models
 
 
@@ -45,17 +43,17 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-def calculate_npv(self):
-    cash_flows = [-self.initial_investment] + \
-        list(self.annual_net_cash_flows())
-    npv_value = sum(cash_flow / ((1 + self.evaluation.discount_rate / 100) ** t)
-                    for t, cash_flow in enumerate(cash_flows))
-    self.npv = round(npv_value, 2)
+    def calculate_npv(self):
+        cash_flows = [-self.initial_investment] + \
+            list(self.annual_net_cash_flows())
+        npv_value = sum(cash_flow / ((1 + self.evaluation.discount_rate / 100) ** t)
+                        for t, cash_flow in enumerate(cash_flows))
+        self.npv = round(npv_value, 2)
 
-    if self.npv < 0:
-        self.consider_further = 'rejected'
+        if self.npv < 0:
+            self.consider_further = 'rejected'
 
-    return self.npv
+        return self.npv
 
     def calculate_payback_period(self):
         """
@@ -69,27 +67,27 @@ def calculate_npv(self):
                 return self.payback_period
         return None
 
-def annual_net_cash_flows(self):
-    """
-    Generator function to yield annual net cash flows for each year.
-    """
-    # Implement the actual logic to calculate or retrieve annual net cash flows
-    for year in range(1, self.period + 1):
-        # Placeholder: Yield a constant value or implement your logic
-        yield 10000  # Replace with actual logic
+    def annual_net_cash_flows(self):
+        """
+        Generator function to yield annual net cash flows for each year.
+        """
+        # Implement the actual logic to calculate or retrieve annual net cash flows
+        for year in range(1, self.period + 1):
+            # Placeholder: Yield a constant value or implement your logic
+            yield 10000  # Replace with actual logic
 
-def calculate_annualized_npv(self):
-    """
-    Calculate Annualized NPV for the project if the periods are different.
-    """
-    if self.period != self.evaluation.period:
-        npv_value = self.calculate_npv()
-        annualized_npv = npv_value / \
-            ((1 + self.evaluation.discount_rate / 100) ** self.period - 1)
-        self.annualized_npv = round(annualized_npv, 2)
-        return self.annualized_npv
-    else:
-        return None  # Periods are the same, skip annualization
+    def calculate_annualized_npv(self):
+        """
+        Calculate Annualized NPV for the project if the periods are different.
+        """
+        if self.period != self.evaluation.period:
+            npv_value = self.calculate_npv()
+            annualized_npv = npv_value / \
+                ((1 + self.evaluation.discount_rate / 100) ** self.period - 1)
+            self.annualized_npv = round(annualized_npv, 2)
+            return self.annualized_npv
+        else:
+            return None  # Periods are the same, skip annualization
 
     def update_rank(self):
         """
