@@ -1,0 +1,75 @@
+/* General Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background: #f4f4f4;
+}
+
+/* Header Styling */
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Footer Styling */
+footer.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Main Content Styling */
+.container {
+    padding: 20px;
+}
+
+/* NPV Calculator Form Styling */
+.form-area {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Input and Button Styling */
+input[type=number], button, input[type=submit] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button#add-another {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+input[type=submit] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+input[type=submit]:hover, button#add-another:hover {
+    opacity: 0.9;
+}
+
+/* Responsive Styling */
+@media (max-width: 576px) {
+    .form-area {
+        padding: 15px;
+    }
+}
