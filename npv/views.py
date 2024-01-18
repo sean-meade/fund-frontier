@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Evaluation, Project
 from .forms import NPV_Form
+from django.contrib.auth.decorators import login_required
 
 def calculate_NPV(cash_flows, discount_rate):
 
@@ -55,6 +56,7 @@ def calculate_NPV_form(request):
 
     return render(request, "npv/calculate-npv.html", {"form": form})
 
-def list_projects(request):
-    projects = Project.objects.all().order_by('-id')
-    return render(request, "npv/list-projects.html", {"projects": projects})
+
+def list_evaluations(request):
+    evaluations = Evaluation.objects.all().order_by('-id')
+    return render(request, "npv/list-evaluations.html", {"evaluations": evaluations})
