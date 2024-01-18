@@ -1,6 +1,6 @@
-from django.shortcuts import render
-
-from npv.forms import NPV_Form
+from django.shortcuts import render, get_object_or_404
+from .models import Evaluation, Project
+from .forms import NPV_Form
 
 def calculate_NPV(cash_flows, discount_rate):
 
@@ -27,19 +27,34 @@ def calculate_NPV_form(request):
     if request.method == "POST":
         form = NPV_Form(request.POST, extra=request.POST.get('cash_flow_year_count', 0))
         if form.is_valid():
-            cash_flows = [-(form.cleaned_data["initial_investment"])]
-            cash_flow_year_count = int(form.cleaned_data["cash_flow_year_count"])
+            # Fetch or create an Evaluation instance
+            # For simplicity, let's fetch an existing Evaluation (you might want to create or select one based on your form)
+            evaluation = get_object_or_404(Evaluation, pk=1)  # assuming there's an Evaluation with id=1
+
+            # Get form data
+            initial_investment = form.cleaned_data["initial_investment"]
+            discount_rate = evaluation.discount_rate  # Assuming you want to use the discount rate from the Evaluation
+            period = int(form.cleaned_data["cash_flow_year_count"])
+            project_name = 'New Project'  # Set a project name or get it from form
             
-            for i in range(1, cash_flow_year_count + 1):
-                cash_flow_key = f"cash_flow_year_{i}"
-                if cash_flow_key in form.cleaned_data:
-                    cash_flows.append(form.cleaned_data[cash_flow_key])
+            # Create a new Project instance
+            project = Project.objects.create(
+                evaluation=evaluation,
+                name=project_name,
+                initial_investment=initial_investment,
+                period=period,
+            )
             
-            discount_rate = form.cleaned_data["discount_rate"]
-            npv = calculate_NPV(cash_flows, discount_rate)
+            # Assuming you have a way to get annual net cash flows from the form
+            # For now, let's assume it's a fixed value like in your placeholder logic
+            project.save()  # Save the project instance to calculate and store NPV and other metrics automatically
             
-            return render(request, "npv/calculate-npv.html", {"form": form, "npv": npv})
+            return render(request, "npv/calculate-npv.html", {"form": form, "npv": project.npv})
     else:
         form = NPV_Form()
 
     return render(request, "npv/calculate-npv.html", {"form": form})
+
+def list_projects(request):
+    projects = Project.objects.all().order_by('-id')
+    return render(request, "npv/list-projects.html", {"projects": projects})

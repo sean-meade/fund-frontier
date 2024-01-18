@@ -3,73 +3,121 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     background: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
 /* Header Styling */
 header {
-    background: #333;
+    background: #0275d8; /* Bootstrap primary color */
     color: #fff;
-    padding: 10px 0;
+    padding: 20px 0;
     text-align: center;
 }
 
 /* Footer Styling */
 footer.footer {
-    background: #333;
+    background: #0275d8; /* Bootstrap primary color */
     color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 /* Main Content Styling */
 .container {
     padding: 20px;
+    max-width: 1200px;
+    margin: auto; /* Center the container */
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background-color: #0275d8; /* Bootstrap primary color */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Zebra striping for table */
 }
 
 /* NPV Calculator Form Styling */
 .form-area {
     background-color: #fff;
     padding: 20px;
-    border: 1px solid #dcdcdc;
+    border: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* subtle shadow for depth */
 }
 
 .title {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
+    color: #333;
 }
 
 /* Input and Button Styling */
 input[type=number], button, input[type=submit] {
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box; /* Include padding in width */
 }
 
-button#add-another {
-    background-color: #007bff;
+button#add-another, input[type=submit] {
+    background-color: #0275d8; /* Bootstrap primary color */
     color: white;
     border: none;
+    font-size: 16px;
+    cursor: pointer; /* Indicates that the element is clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
 input[type=submit] {
-    background-color: #28a745;
-    color: white;
-    border: none;
+    background-color: #5cb85c; /* Bootstrap success color */
 }
 
 input[type=submit]:hover, button#add-another:hover {
-    opacity: 0.9;
+    background-color: #025aa5; /* Darken the button color on hover */
 }
 
 /* Responsive Styling */
-@media (max-width: 576px) {
-    .form-area {
+@media (max-width: 768px) {
+    header, footer.footer {
+        padding: 15px 0;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .form-area, .container {
         padding: 15px;
     }
 }
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+/* Add any additional utility classes as needed */
