@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['8000-qburn93-fundfrontier-zlme3vsnzam.ws-eu107.gitpod.io']
 DEBUG = True
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
