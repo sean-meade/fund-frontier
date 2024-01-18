@@ -7,6 +7,8 @@ class Evaluation(models.Model):
     """
     name = models.CharField(max_length=255)
     discount_rate = models.DecimalField(max_digits=5, decimal_places=2)
+    note = models.CharField(max_length=200)
+    number_of_projects = models.IntegerField()
 
     def __str__(self):
         return self.name
