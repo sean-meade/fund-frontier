@@ -45,17 +45,21 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-    def calculate_npv(self):
-        cash_flows = [-self.initial_investment] + \
-            list(self.annual_net_cash_flows())
-        npv_value = sum(cash_flow / ((1 + self.evaluation.discount_rate / 100) ** t)
-                        for t, cash_flow in enumerate(cash_flows))
+    def calculate_npv(self, cash_flows_input):
+        # cash_flows = [1,2,3,4]
+        cash_flows = [-self.initial_investment] + cash_flows_input
+        print("cash_flows", cash_flows)
+        npv_value = sum(cash_flow / ((1 + self.evaluation.discount_rate / 100) ** t)for t, cash_flow in enumerate(cash_flows))
+        # npv_value = 100.00
+        print("npv_value", npv_value)
         self.npv = round(npv_value, 2)
+        print("self.npv", self.npv)
 
         if self.npv < 0:
             self.consider_further = 'rejected'
 
         return self.npv
+
 
     def calculate_payback_period(self):
         """
@@ -82,7 +86,7 @@ class Project(models.Model):
         """
         Calculate Annualized NPV for the project if the periods are different.
         """
-        if self.period != self.evaluation.period:
+        if self.period != self.period:
             npv_value = self.calculate_npv()
             annualized_npv = npv_value / \
                 ((1 + self.evaluation.discount_rate / 100) ** self.period - 1)
@@ -91,30 +95,32 @@ class Project(models.Model):
         else:
             return None  # Periods are the same, skip annualization
 
-    def update_rank(self):
-        """
-        Update the project's rank based on NPV and period criteria.
-        """
-        if self.npv > 0 and self.period == self.evaluation.period:
-            projects_same_period = Project.objects.filter(
-                evaluation=self.evaluation, npv__gt=0, period=self.period
-            ).order_by('-npv')
-            rank = list(projects_same_period).index(self) + 1
-            self.rank = rank
-        elif self.npv > 0 and self.period != self.evaluation.period:
-            projects_diff_period = Project.objects.filter(
-                evaluation=self.evaluation, npv__gt=0, period__ne=self.period
-            ).order_by('-annualized_npv')
-            rank = list(projects_diff_period).index(self) + 1
-            self.rank = rank
-        else:
-            self.rank = None
+    # def update_rank(self):
+    #     """
+    #     Update the project's rank based on NPV and period criteria.
+    #     """
+        
+    #     if self.npv > 0 and self.period == self.period:
+    #         projects_same_period = Project.objects.filter(
+    #             evaluation=self.evaluation, npv__gt=0, period=self.period
+    #         ).order_by('-npv')
+    #         # 
+    #         rank = list(projects_same_period).index(self) + 1
+    #         self.rank = rank
+    #     elif self.npv > 0 and self.period != self.period:
+    #         projects_diff_period = Project.objects.filter(
+    #             evaluation=self.evaluation, npv__gt=0, period__ne=self.period
+    #         ).order_by('-annualized_npv')
+    #         rank = list(projects_diff_period).index(self) + 1
+    #         self.rank = rank
+    #     else:
+    #         self.rank = None
 
     def save(self, *args, **kwargs):
         """
         Override the save method to update the rank before saving the project.
         """
-        self.update_rank()
+        # self.update_rank()
         super().save(*args, **kwargs)
 
 
