@@ -46,11 +46,12 @@ class Project(models.Model):
         return self.name
 
     def calculate_npv(self):
-        cash_flows = [1,2,3,4]
+        # cash_flows = [1,2,3,4]
+        cash_flows = [-self.initial_investment] + list(self.annual_net_cash_flows())
             # list(self.annual_net_cash_flows())
         print("cash_flows", cash_flows)
-        # npv_value = sum(cash_flow / ((1 + self.evaluation.discount_rate / 100) ** t)for t, cash_flow in enumerate(cash_flows))
-        npv_value = 100.00
+        npv_value = sum(cash_flow / ((1 + self.evaluation.discount_rate / 100) ** t)for t, cash_flow in enumerate(cash_flows))
+        # npv_value = 100.00
         print("npv_value", npv_value)
         self.npv = round(npv_value, 2)
         print("self.npv", self.npv)
