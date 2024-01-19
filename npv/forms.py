@@ -2,6 +2,7 @@ from django import forms
 
 
 class NPV_Form(forms.Form):
+    # TODO: Limit discount_rate to be max 100%
     initial_investment = forms.FloatField(label="Initial investment")
     discount_rate = forms.FloatField(label="Discount Rate")
     cash_flow_year_1 = forms.FloatField()
