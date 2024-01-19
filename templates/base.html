@@ -74,15 +74,16 @@
     <script>
         let form_count = Number($("[name=cash_flow_year_count]").val());
         // get extra form count so we know what index to use for the next item.
-        
+
         $("#add-another").click(function() {
             form_count ++;
-        
-            let element = $('<p><input type="number"/><p>');
+
+            let element = $('<input type="number"/>');
             element.attr('name', 'cash_flow_year_' + form_count);
+            $(element).nextUntil('.end').wrapAll('<p>');
             $("#forms").append(element);
             // build element and append it to our forms container
-        
+
             $("[name=cash_flow_year_count]").val(form_count);
             // increment form count so our view knows to populate 
             // that many fields for validation
