@@ -22,20 +22,17 @@ def calculate_NPV_form(request):
             
             # Calculate the npv
             # render page with npv value
-            try:
-                # TODO: Create input field for evaluation name and note
-                evaluation = Evaluation.objects.create(
-                    name = "evaluation_name_new",
-                    discount_rate = discount_rate,
-                    note = "note",
-                    number_of_projects = 1,
-                    period= len(cash_flows) - 1
-                )
-                evaluation.save()
-            except:
-                # TODO: Raise error if problem with creation of evalutaion
-                print("problem creating evaluation")
-                return None
+            
+            # TODO: Create input field for evaluation name and note
+            evaluation = Evaluation.objects.create(
+                name = "evaluation_name_new",
+                discount_rate = discount_rate,
+                note = "note",
+                number_of_projects = 1,
+                period= len(cash_flows) - 1
+            )
+            evaluation.save()
+            
             # TODO: Try except for projects
             # - Create input field for name
             # - BUG: adding an extra project for some reason?
