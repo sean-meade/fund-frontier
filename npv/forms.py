@@ -1,5 +1,6 @@
 from django import forms
 
+
 class NPV_Form(forms.Form):
     initial_investment = forms.FloatField(label="Initial investment")
     discount_rate = forms.FloatField(label="Discount Rate")
@@ -10,8 +11,9 @@ class NPV_Form(forms.Form):
         extra_fields = kwargs.pop('extra', 0)
 
         super(NPV_Form, self).__init__(*args, **kwargs)
-        self.fields['cash_flow_year_count'].initial = extra_fields  # Set to the number of cash flows
+        self.fields['cash_flow_year_count'].initial = 1
 
-        for index in range(2, int(extra_fields) + 1):  # start from 2 to extra_fields inclusive
+        for index in range(2, int(extra_fields) + 1):
             # generate extra fields in the number specified via extra_fields
-            self.fields[f'cash_flow_year_{index}'] = forms.FloatField()  # Use f-string for cleaner syntax
+            self.fields['cash_flow_year_{index}'.format(index=index)] = \
+                forms.FloatField()
