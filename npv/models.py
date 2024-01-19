@@ -45,9 +45,9 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-    def calculate_npv(self):
+    def calculate_npv(self, cash_flows_input):
         # cash_flows = [1,2,3,4]
-        cash_flows = [-self.initial_investment] + list(self.annual_net_cash_flows())
+        cash_flows = [-self.initial_investment] + cash_flows_input
             # list(self.annual_net_cash_flows())
         print("cash_flows", cash_flows)
         npv_value = sum(cash_flow / ((1 + self.evaluation.discount_rate / 100) ** t)for t, cash_flow in enumerate(cash_flows))
@@ -129,7 +129,6 @@ class Project(models.Model):
         """
         Override the save method to update the rank before saving the project.
         """
-        self.calculate_npv()
         # self.update_rank()
         super().save(*args, **kwargs)
 

@@ -10,7 +10,7 @@ def calculate_npv_form(request):
         if form.is_valid():
             # process the data in form.cleaned_data as required
             # Create list for cash flows by adding initial investment
-            cash_flows = [-(form.cleaned_data["initial_investment"])]
+            cash_flows = []
             # Loop through each cash flow and add to cash flow list
             print("form.cleaned_data", form.cleaned_data)
             for i in range(1, int(form.cleaned_data["cash_flow_year_count"]) + 1):
@@ -34,6 +34,7 @@ def calculate_npv_form(request):
                  name="project_name",
                  initial_investment=(form.cleaned_data["initial_investment"]),
                  period= len(cash_flows) - 1)
+            project.calculate_npv(cash_flows)
             project.save()
            
             return render(request, "npv/calculate-npv.html", {"form": form}) 
