@@ -154,7 +154,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 if HOSTED_SITE:
-    print("Database is working")
 
     STATIC_URL = '/static/'
     STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
