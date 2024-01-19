@@ -32,10 +32,9 @@ def calculate_NPV_form(request):
                     period= len(cash_flows) - 1
                 )
                 evaluation.save()
-            except:
-                # TODO: Raise error if problem with creation of evalutaion
-                print("problem creating evaluation")
-                return None
+            except Exception as error:
+                # handle the exception
+                print("An exception occurred in evaluation:", error)
             # TODO: Try except for projects
             # - Create input field for name
             # - BUG: adding an extra project for some reason?
