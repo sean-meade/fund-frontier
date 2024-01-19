@@ -116,3 +116,11 @@ class Project(models.Model):
         """
         self.update_rank()
         super().save(*args, **kwargs)
+
+
+class AnnualNetCashFlows(models.Model): 
+
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    cash_flow_amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True)
+    period = models.IntegerField()

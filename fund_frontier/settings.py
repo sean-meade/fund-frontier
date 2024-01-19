@@ -101,7 +101,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 SITE_ID = 1
 
-HOSTED_SITE = os.environ.get('HOSTED_SITE')
+HOSTED_SITE = bool(os.environ.get('HOSTED_SITE'))
 
 # if HOSTED_SITE:
 
