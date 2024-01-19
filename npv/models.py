@@ -9,6 +9,7 @@ class Evaluation(models.Model):
     discount_rate = models.DecimalField(max_digits=5, decimal_places=2)
     note = models.CharField(max_length=200)
     number_of_projects = models.IntegerField()
+    period = models.IntegerField()
 
     def __str__(self):
         return self.name
@@ -76,7 +77,6 @@ class Project(models.Model):
             npv_value = self.npv
             annualized_npv = npv_value / ((1 + self.evaluation.discount_rate / 100) ** self.period - 1)
             self.annualized_npv = round(annualized_npv, 2)
-            print('self.annualized_npv', self.annualized_npv)
             return self.annualized_npv
         except:
             return None  # Periods are the same, skip annualization
@@ -85,20 +85,36 @@ class Project(models.Model):
     #     """
     #     Update the project's rank based on NPV and period criteria.
     #     """
-    #     if self.npv is not None and self.npv > 0:
-    #         projects_same_period = Project.objects.filter(
-    #             evaluation=self.evaluation, npv__gt=0, period=self.period
-    #         ).order_by('-npv')
-    #         rank = list(projects_same_period).index(self) + 1
-    #         self.rank = rank
-    #     elif self.npv is not None and self.npv > 0:
-    #         projects_diff_period = Project.objects.filter(
-    #             evaluation=self.evaluation, npv__gt=0, period__ne=self.period
-    #         ).order_by('-annualized_npv')
-    #         rank = list(projects_diff_period).index(self) + 1
-    #         self.rank = rank
-    #     else:
-    #         self.rank = None
+    #     print("")
+    #     print("")
+    #     print("")
+    #     print("self.name", self.name)
+    #     print("We hit the rank")
+    #     print("npv", self.npv)
+    #     print("self.period", self.period)
+    #     print("self.evaluation.period", self.evaluation.period)
+        
+
+    #     if self.npv is not None and self.npv > 0 and self.period == self.evaluation.period:
+    #         print("We have passed the if statement")
+    #         projects_same_evaluation = Project.objects.all( 
+    #                                                       ).order_by('npv').values_list('id', flat=True)
+    #         print("projects_same_period", projects_same_evaluation)
+    #         for rank, project_id in enumerate(projects_same_evaluation):
+    #             print("rank, project_id", rank, project_id)
+    #             project = Project.objects.get(id=project_id)
+    #             print("project", project)
+    #             setattr(project, 'rank', rank+1)
+                
+            
+        # elif self.npv is not None and self.npv > 0 and self.period == self.evaluation.period:
+        #     projects_diff_period = Project.objects.filter(
+        #         evaluation=self.evaluation, npv__gt=0, period=self.period
+        #     ).order_by('annualized_npv').values_list('id', flat=True)
+        #     rank = projects_diff_period.index(self) + 1
+        #     self.rank = rank
+        # else:
+        #     self.rank = None
         
     def save(self, *args, **kwargs):
         """

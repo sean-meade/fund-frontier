@@ -17,28 +17,44 @@ def calculate_NPV_form(request):
             for i in range(1, int(form.cleaned_data["cash_flow_year_count"]) + 1):
                 cash_flows.append(form.cleaned_data["cash_flow_year_"+str(i)])
             # save discount rate
-            discount_rate = form.cleaned_data["discount_rate"]
+            discount_rate = form.cleaned_data["discount_rate"] / 100
             
             # Calculate the npv
             # render page with npv value
             evaluation = Evaluation.objects.create(
-                name = "evaluation_name",
+                name = "evaluation_name_new",
                 discount_rate = discount_rate,
                 note = "note",
-                number_of_projects = 1
+                number_of_projects = 1,
+                period= len(cash_flows) - 1
             )
             evaluation.save()
             project = Project.objects.create(
                  evaluation=evaluation,
-                 name="project_name",
+                 name="project_name_new",
                  initial_investment=(form.cleaned_data["initial_investment"]),
                  period= len(cash_flows) - 1)
             project.calculate_npv(cash_flows)
             project.calculate_payback_period(cash_flows)
             project.save()
+            project2 = Project.objects.create(
+                 evaluation=evaluation,
+                 name="project_name_2_new",
+                 initial_investment=(form.cleaned_data["initial_investment"]),
+                 period= len(cash_flows) - 1)
+            project2.calculate_npv(cash_flows)
+            project2.calculate_payback_period(cash_flows)
+            project2.save()
+            projects_same_evaluation = Project.objects.filter(evaluation=evaluation).order_by('npv').values_list('id', flat=True)
+            print("projects_same_period", projects_same_evaluation)
+            for rank, project_id in enumerate(projects_same_evaluation):
+                print("rank, project_id", rank, project_id)
+                project = Project.objects.get(id=project_id)
+                print("project", project)
+                setattr(project, 'rank', rank+1)
+                project.save()
            
             return render(request, "npv/calculate-npv.html", {"form": form}) 
-        print("not valid")
     form = NPV_Form()       
     return render(request, "npv/calculate-npv.html", {"form": form})
 
