@@ -26,7 +26,7 @@ DATABASE_URL = os.environ.get('DATABASE_URL')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
-ALLOWED_HOSTS = ['8000-qburn93-fundfrontier-zlme3vsnzam.ws-eu107.gitpod.io']
+ALLOWED_HOSTS = ['8000-qburn93-fundfrontier-zlme3vsnzam.ws-eu107.gitpod.io', '127.0.0.1']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -103,20 +103,20 @@ SITE_ID = 1
 
 HOSTED_SITE = os.environ.get('HOSTED_SITE')
 
-if HOSTED_SITE:
+# if HOSTED_SITE:
 
-    # Database
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    }
+#     # Database
+#     DATABASES = {
+#         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#     }
 
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+# else:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 
 
 # Password validation
@@ -154,7 +154,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 if HOSTED_SITE:
-    print(HOSTED_SITE)
 
     STATIC_URL = '/static/'
     STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
