@@ -42,3 +42,7 @@ def calculate_npv_form(request):
     form = NPV_Form()       
     return render(request, "npv/calculate-npv.html", {"form": form})
     
+
+def list_evaluations(request):
+    evaluations = Evaluation.objects.all().order_by('-id')
+    return render(request, "npv/list-evaluations.html", {"evaluations": evaluations})
