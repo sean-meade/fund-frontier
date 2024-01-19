@@ -1,4 +1,3 @@
-/* General Body Styling */
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
@@ -13,6 +12,41 @@ header {
     color: #fff;
     padding: 20px 0;
     text-align: center;
+}
+.navbar {
+    background-color: #0275d8; /* Bootstrap primary color */
+    border-radius: 0; /* Aligns with the overall flat design */
+}
+
+.navbar-brand {
+    color: #fff !important; /* Ensures the brand text is white */
+    font-weight: bold; /* Matches the boldness of the title */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff !important; /* Ensures the nav links are white */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus {
+    color: #cce5ff !important; /* Subtle change for hover state */
+}
+
+.navbar-toggler {
+    border-color: #fff; /* Ensures the toggler is visible against the primary color */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    /* Custom SVG for the toggler icon */
+}
+
+/* Sticky Navbar */
+.navbar-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1020; /* Ensures the navbar stays above other content */
 }
 
 /* Footer Styling */
@@ -113,6 +147,11 @@ input[type=submit]:hover, button#add-another:hover {
     .form-area, .container {
         padding: 15px;
     }
+    .navbar-nav .nav-link {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-size: 0.9rem;
+    }
 }
 
 /* Utility Classes */
@@ -121,3 +160,17 @@ input[type=submit]:hover, button#add-another:hover {
 }
 
 /* Add any additional utility classes as needed */
+
+
+/* Link Active State */
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show>.nav-link {
+    color: #ffd700 !important; /* Gold color for the active link */
+}
+
+/* Utility class for changing the navbar text color */
+.nav-text-color {
+    color: #fff !important; /* Change as needed */
+}

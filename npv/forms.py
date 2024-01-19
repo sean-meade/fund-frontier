@@ -15,3 +15,9 @@ class NPV_Form(forms.Form):
         for index in range(2, int(extra_fields) + 1):  # start from 2 to extra_fields inclusive
             # generate extra fields in the number specified via extra_fields
             self.fields[f'cash_flow_year_{index}'] = forms.FloatField()  # Use f-string for cleaner syntax
+
+class ContactForm(forms.Form):
+    # Define your form fields here
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)
