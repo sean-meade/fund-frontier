@@ -19,7 +19,6 @@ def calculate_NPV_form(request):
             # save discount rate
             discount_rate = form.cleaned_data["discount_rate"]
             
-            print("cash_flows", cash_flows)
             # Calculate the npv
             # render page with npv value
             evaluation = Evaluation.objects.create(
@@ -35,6 +34,7 @@ def calculate_NPV_form(request):
                  initial_investment=(form.cleaned_data["initial_investment"]),
                  period= len(cash_flows) - 1)
             project.calculate_npv(cash_flows)
+            project.calculate_payback_period(cash_flows)
             project.save()
            
             return render(request, "npv/calculate-npv.html", {"form": form}) 
