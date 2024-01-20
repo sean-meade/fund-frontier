@@ -1,22 +1,53 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Evaluation, Project, CashFlow
-from .forms import NPV_Form
+from .forms import NPV_Form, contact form
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 
-#@login_required
+
+def base(request):
+    context = {'some_key': 'some_value'}  # Replace with actual context data
+    return render(request, 'base.html', context)
+
+
+def about(request):
+    context = {'some_key': 'some_value'}  # Replace with actual context data
+    return render(request, 'about.html', context)
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Process the form data (e.g., send an email)
+            pass  # Implement the action
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})
+
+
+
+
+@login_required
+
 def calculate_NPV_form(request):
     if request.method == "POST":
-        form = NPV_Form(request.POST, extra=request.POST.get('cash_flow_year_count', 0))
+        form = NPV_Form(request.POST, extra=request.POST.get(
+            'cash_flow_year_count', 0))
         if form.is_valid():
             # Create list for cash flows
             cash_flows = []
+
+
+            # Loop through each cash flow and add to cash flow list
+
             for i in range(1, int(form.cleaned_data["cash_flow_year_count"]) + 1):
                 cash_flows.append(form.cleaned_data["cash_flow_year_"+str(i)])
 
             # Save discount rate
             discount_rate = form.cleaned_data["discount_rate"] / 100
+
 
             # Create a new evaluation
             evaluation = Evaluation.objects.create(
@@ -26,6 +57,7 @@ def calculate_NPV_form(request):
                 number_of_projects=1,
                 period=len(cash_flows) - 1
             )
+            evaluation.save()
 
             # Create a new project
             project = Project.objects.create(
@@ -50,6 +82,7 @@ def calculate_NPV_form(request):
             # Create a second project
             project2 = Project.objects.create(
                 evaluation=evaluation,
+
                 name=form.cleaned_data["project_name_2"],
                 initial_investment=form.cleaned_data["initial_investment"],
                 period=len(cash_flows) - 1
@@ -61,9 +94,11 @@ def calculate_NPV_form(request):
                     year=i,
                     amount=cash_flow,
                 )
+
             project2.calculate_npv(cash_flows)
             project2.calculate_payback_period(cash_flows)
             project2.save()
+
 
             project3 = Project.objects.create(
                 evaluation=evaluation,
@@ -95,6 +130,9 @@ def calculate_NPV_form(request):
     form = NPV_Form()       
     return render(request, "npv/calculate-npv.html", {"form": form})
 
+
+
+@login_required
 def list_evaluations(request):
     evaluations = Evaluation.objects.all().order_by('-id')
     return render(request, "npv/list-evaluations.html", {"evaluations": evaluations})
