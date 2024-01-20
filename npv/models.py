@@ -94,22 +94,23 @@ class Project(models.Model):
                 return self.payback_period
         return None
 
-    def calculate_annualized_npv(self):
-        """
-        Calculate Annualized NPV for the project if the periods are different.
-        """
-        try:
-            npv_value = self.npv
-            # Present value interest factor of annuity (PVIFA)
-            pvifa = (
-                1 - (1 + Evaluation.discount_rate) ** (Project.period)
-            ) / (Evaluation.discount_rate)
-            # calulate annualized npv
-            annualized_npv = npv_value / pvifa
-            self.annualized_npv = round(annualized_npv, 2)
-            return self.annualized_npv
-        except ZeroDivisionError:
-            return None  # Periods are the same, skip annualization
+def calculate_annualized_npv(self):
+    """
+    Calculate Annualized NPV for the project if the periods are different.
+    """
+    try:
+        npv_value = self.npv
+        # Present value interest factor of annuity (PVIFA)
+        pvifa = (
+            1 - (1 + self.evaluation.discount_rate) ** self.period
+        ) / self.evaluation.discount_rate
+        # calculate annualized npv
+        annualized_npv = npv_value / pvifa
+        self.annualized_npv = round(annualized_npv, 2)
+        return self.annualized_npv
+    except ZeroDivisionError:
+        return None  # Periods are the same, skip annualization
+
 
     def save(self, *args, **kwargs):
         """
