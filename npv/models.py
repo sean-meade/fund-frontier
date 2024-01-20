@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+import numpy_financial as npf
+
 
 
 class Evaluation(models.Model):
@@ -50,8 +52,10 @@ class Project(models.Model):
 
     def calculate_npv(self, cash_flows_input):
         # cash_flows = [1,2,3,4]
+        # contact the initial investment to the cashflow
         cash_flows = [-self.initial_investment] + cash_flows_input
-        npv_value = sum(cash_flow / ((1 + self.evaluation.discount_rate / 100) ** t) for t, cash_flow in enumerate(cash_flows))
+        # calucalte the NPV for all cashflow starting from year one
+        npv_value = npf.npv(self.evaluation.discount_rate / 100, cash_flows)
         self.npv = round(npv_value, 2)
         if self.npv < 0:
             self.consider_further = 'rejected'
