@@ -18,7 +18,6 @@ class Evaluation(models.Model):
     def __str__(self):
         return self.name
 
-
 class Project(models.Model):
     """
     Model representing a project with various financial metrics and calculations.
@@ -50,11 +49,12 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-    def calculate_npv(self, cash_flows_input):
-        # cash_flows = [1,2,3,4]
-        # contact the initial investment to the cashflow
-        cash_flows = [-self.initial_investment] + cash_flows_input
-        # calucalte the NPV for all cashflow starting from year one
+    def calculate_npv(self):
+        # Fetch related Annual_net_cashflow instances for the project
+        cash_flows_input = self.annual_net_cashflows.value_list('value', flat= True)
+        # concact the initial investment to the cashflow
+        cash_flows = [-self.initial_investment] + list(cash_flows_input)
+        # calucalte the NPV for all cashflow starting including the initial investment
         npv_value = npf.npv(self.evaluation.discount_rate / 100, cash_flows)
         self.npv = round(npv_value, 2)
         if self.npv < 0:
@@ -99,4 +99,9 @@ class Project(models.Model):
         self.calculate_annualized_npv()
         super().save(*args, **kwargs)
 
-# TODO: Create Class for cash flows
+class Annual_net_cashflow(models.Model):
+    value = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE,related_name='annual_net_cashflows')
+
+    def __str__(self):
+        return self.name
