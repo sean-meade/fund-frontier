@@ -1,10 +1,15 @@
 from django import forms
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class NPV_Form(forms.Form):
-    # TODO: Limit discount_rate to be max 100%
+    evaluation_name = forms.CharField(label="Evaluation Name")
     initial_investment = forms.FloatField(label="Initial investment")
-    discount_rate = forms.FloatField(label="Discount Rate")
+    discount_rate = forms.FloatField(label="Discount Rate", validators=[MaxValueValidator(100), MinValueValidator(0)])
+    note = forms.CharField(label="Note")
+    project_name = forms.CharField(label="Project Name")
+    project_name_2 = forms.CharField(label="Project Name 2")
+    project_name_3 = forms.CharField(label="Project Name 3")
+    #TODO: add seperate cash flow per project
     cash_flow_year_1 = forms.FloatField()
     cash_flow_year_count = forms.FloatField(widget=forms.HiddenInput())
 
@@ -15,6 +20,9 @@ class NPV_Form(forms.Form):
         self.fields['cash_flow_year_count'].initial = 1
 
         for index in range(2, int(extra_fields) + 1):
+
+            self.fields['cash_flow_year_{index}'.format(index=index)] = \
+                forms.FloatField()
             # generate extra fields in the number specified via extra_fields
             self.fields[f'cash_flow_year_{index}'] = forms.FloatField()  # Use f-string for cleaner syntax
 
@@ -23,4 +31,5 @@ class ContactForm(forms.Form):
     name = forms.CharField(max_length=100)
     email = forms.EmailField()
     message = forms.CharField(widget=forms.Textarea)
+
 

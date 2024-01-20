@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 import dj_database_url
+if os.path.exists("env.py"):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -113,6 +115,7 @@ ACCOUNT_USERNAME_REQUIRED = True
 
 HOSTED_SITE = bool(os.environ.get('HOSTED_SITE'))
 
+
 if HOSTED_SITE:
     print("hosted database")
     # Database
@@ -128,6 +131,7 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+
 
 
 # Password validation
