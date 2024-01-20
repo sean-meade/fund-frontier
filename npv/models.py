@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.validators import MaxValueValidator
+from django.contrib.auth.models import User
 
 
 class Evaluation(models.Model):
@@ -6,12 +8,11 @@ class Evaluation(models.Model):
     Model representing an evaluation with a name and discount rate.
     """
     name = models.CharField(max_length=255)
-    # TODO: Do we limit the amount here?
-    discount_rate = models.DecimalField(max_digits=5, decimal_places=2)
+    discount_rate = models.DecimalField(max_digits=5, decimal_places=2, validators=[MaxValueValidator(100)])
     note = models.CharField(max_length=200)
     number_of_projects = models.IntegerField()
     period = models.IntegerField()
-    # TODO: add relationship to user
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -92,4 +93,13 @@ class Project(models.Model):
         self.calculate_annualized_npv()
         super().save(*args, **kwargs)
 
-# TODO: Create Class for cash flows
+class CashFlow(models.Model):
+    """
+    Model representing a cash flow for a specific year of a project.
+    """
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    year = models.IntegerField()
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f'Year {self.year}: {self.amount}'

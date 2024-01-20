@@ -1,10 +1,10 @@
 from django import forms
-
+from django.core.validators import MaxValueValidator
 
 class NPV_Form(forms.Form):
-    # TODO: Limit discount_rate to be max 100%
     initial_investment = forms.FloatField(label="Initial investment")
-    discount_rate = forms.FloatField(label="Discount Rate")
+    #this limits it to 100%
+    discount_rate = forms.FloatField(label="Discount Rate", validators=[MaxValueValidator(100)])
     cash_flow_year_1 = forms.FloatField()
     cash_flow_year_count = forms.FloatField(widget=forms.HiddenInput())
 
@@ -15,6 +15,5 @@ class NPV_Form(forms.Form):
         self.fields['cash_flow_year_count'].initial = 1
 
         for index in range(2, int(extra_fields) + 1):
-            # generate extra fields in the number specified via extra_fields
             self.fields['cash_flow_year_{index}'.format(index=index)] = \
                 forms.FloatField()
