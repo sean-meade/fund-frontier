@@ -1,10 +1,15 @@
 from django import forms
-from django.core.validators import MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class NPV_Form(forms.Form):
+    evaluation_name = forms.CharField(label="Evaluation Name")
     initial_investment = forms.FloatField(label="Initial investment")
-    #this limits it to 100%
-    discount_rate = forms.FloatField(label="Discount Rate", validators=[MaxValueValidator(100)])
+    discount_rate = forms.FloatField(label="Discount Rate", validators=[MaxValueValidator(100), MinValueValidator(0)])
+    note = forms.CharField(label="Note")
+    project_name = forms.CharField(label="Project Name")
+    project_name_2 = forms.CharField(label="Project Name 2")
+    project_name_3 = forms.CharField(label="Project Name 3")
+    #TODO: add seperate cash flow per project
     cash_flow_year_1 = forms.FloatField()
     cash_flow_year_count = forms.FloatField(widget=forms.HiddenInput())
 

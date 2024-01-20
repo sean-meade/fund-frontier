@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 
 
@@ -8,7 +8,7 @@ class Evaluation(models.Model):
     Model representing an evaluation with a name and discount rate.
     """
     name = models.CharField(max_length=255)
-    discount_rate = models.DecimalField(max_digits=5, decimal_places=2, validators=[MaxValueValidator(100)])
+    discount_rate = models.DecimalField(max_digits=5, decimal_places=2, validators=[MaxValueValidator(100), MinValueValidator])
     note = models.CharField(max_length=200)
     number_of_projects = models.IntegerField()
     period = models.IntegerField()
