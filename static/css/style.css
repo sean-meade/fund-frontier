@@ -83,7 +83,7 @@ input[type=number], button, input[type=submit] {
     box-sizing: border-box; /* Include padding in width */
 }
 
-button#add-another, input[type=submit] {
+button.year, input[type=submit] {
     background-color: #0275d8; /* Bootstrap primary color */
     color: white;
     border: none;
@@ -96,7 +96,7 @@ input[type=submit] {
     background-color: #5cb85c; /* Bootstrap success color */
 }
 
-input[type=submit]:hover, button#add-another:hover {
+input[type=submit]:hover, button.yearr:hover {
     background-color: #025aa5; /* Darken the button color on hover */
 }
 
