@@ -82,7 +82,10 @@ class Project(models.Model):
         """
         try:
             npv_value = self.npv
-            annualized_npv = npv_value / ((1 + self.evaluation.discount_rate / 100) ** self.period - 1)
+            # Aresent value interest factor of annuity (PVIFA)
+            pvifa = (1-(1 + Evaluation.discount_rate) ** (Project.period))/ (Evaluation.discount_rate)
+            # Annualized npv
+            annualized_npv = npv_value / pvifa
             self.annualized_npv = round(annualized_npv, 2)
             return self.annualized_npv
         except:
