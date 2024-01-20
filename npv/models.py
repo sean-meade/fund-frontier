@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 
 
 class Evaluation(models.Model):
@@ -8,9 +9,8 @@ class Evaluation(models.Model):
     name = models.CharField(max_length=255)
     # TODO: Do we limit the amount here?
     discount_rate = models.DecimalField(max_digits=5, decimal_places=2)
+    number_of_projects = models.IntegerField(validators=[MinValueValidator(2)], help_text="Minimum number of projects required is 2")
     note = models.CharField(max_length=200)
-    number_of_projects = models.IntegerField()
-    period = models.IntegerField()
     # TODO: add relationship to user
 
     def __str__(self):
