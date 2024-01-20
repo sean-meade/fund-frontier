@@ -146,6 +146,17 @@
             // that many fields for validation
             //TODO: add 3 buttons for add and delete cash flows of each project
         })
+
+        $("#delete-another").click(function() {
+            
+            $('#forms input:last').remove();
+            form_count --;
+            // build element and append it to our forms container
+
+            $("[name=cash_flow_year_count]").val(form_count);
+            // increment form count so our view knows to populate 
+            // that many fields for validation
+        })
 </script>
     {% endblock %}
 </body>
