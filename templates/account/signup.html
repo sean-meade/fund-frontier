@@ -15,7 +15,7 @@
         <div class="col-md-6">
             <h1 class="text-center">{% trans "Create Your Account" %}</h1>
             <p class="text-center">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-            <form class="registration" id="registration_form" method="post" action="{% url 'signup' %}">
+            <form class="registration" id="registration_form" method="post" action="{% url 'account_signup' %}">
                 {% csrf_token %}
                 <div class="form-group mx-auto" style="width:100%">
                     {{ form.as_p }}

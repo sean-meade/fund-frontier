@@ -24,17 +24,17 @@ header {
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: #fff !important; /* Ensures the nav links are white */
+    color: #e41313 !important; /* Ensures the nav links are white */
     transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link:focus {
-    color: #cce5ff !important; /* Subtle change for hover state */
+    color: #0b74e4 !important; /* Subtle change for hover state */
 }
 
 .navbar-toggler {
-    border-color: #fff; /* Ensures the toggler is visible against the primary color */
+    border-color: #e80909; /* Ensures the toggler is visible against the primary color */
 }
 
 .navbar-toggler-icon {
