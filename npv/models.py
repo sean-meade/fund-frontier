@@ -74,7 +74,7 @@ class Project(models.Model):
         Calculate the Net Present Value (NPV) for the project.
         """
         # Fetch related Annual_net_cashflow instances for the project
-        cash_flows_input = self.annual_net_cashflows.value_list(
+        cash_flows_input = self.annual_net_cashflows.values_list(
             "value", flat=True
         )
         # concact the initial investment to the cashflow
