@@ -11,6 +11,8 @@ django-allauth==0.60.1
 django-cloudinary-storage==0.3.0
 gunicorn==21.2.0
 idna==3.6
+numpy==1.26.3
+numpy-financial==1.0.0
 oauthlib==3.2.2
 packaging==23.2
 psycopg2==2.9.9
