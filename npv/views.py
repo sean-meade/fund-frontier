@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Evaluation, Project
 from .forms import NPV_Form
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+
 
 
 def calculate_NPV_form(request):
@@ -22,20 +24,20 @@ def calculate_NPV_form(request):
             
             # Calculate the npv
             # render page with npv value
-            try:
+            
                 # TODO: Create input field for evaluation name and note
-                evaluation = Evaluation.objects.create(
-                    name = "evaluation_name_new",
-                    discount_rate = discount_rate,
-                    note = "note",
-                    number_of_projects = 1,
-                    period= len(cash_flows) - 1
+            evaluation = Evaluation.objects.create(
+                name = "evaluation_name_new",
+                discount_rate = discount_rate,
+                note = "note",
+                number_of_projects = 1,
+                period= len(cash_flows) - 1
                 )
-                evaluation.save()
-            except:
+            evaluation.save()
+            
                 # TODO: Raise error if problem with creation of evalutaion
-                print("problem creating evaluation")
-                return None
+                
+             
             # TODO: Try except for projects
             # - Create input field for name
             # - BUG: adding an extra project for some reason?
