@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Evaluation, Project, CashFlow
-from .forms import NPV_Form, contact form
+from .forms import NPV_Form, ContactForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-
 
 
 def base(request):
@@ -27,8 +26,6 @@ def contact(request):
     return render(request, 'contact.html', {'form': form})
 
 
-
-
 @login_required
 
 def calculate_NPV_form(request):
@@ -39,14 +36,14 @@ def calculate_NPV_form(request):
             # Create list for cash flows
             cash_flows = []
 
-
+            print("form.cleaned_data", form.cleaned_data)
             # Loop through each cash flow and add to cash flow list
 
             for i in range(1, int(form.cleaned_data["cash_flow_year_count"]) + 1):
                 cash_flows.append(form.cleaned_data["cash_flow_year_"+str(i)])
 
             # Save discount rate
-            discount_rate = form.cleaned_data["discount_rate"] / 100
+            discount_rate = float(form.cleaned_data["discount_rate"]) / 100
 
 
             # Create a new evaluation
@@ -55,7 +52,8 @@ def calculate_NPV_form(request):
                 discount_rate=discount_rate,
                 note=form.cleaned_data["note"],
                 number_of_projects=1,
-                period=len(cash_flows) - 1
+                period=len(cash_flows) - 1,
+                user = request.user
             )
             evaluation.save()
 
