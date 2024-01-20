@@ -114,13 +114,14 @@ ACCOUNT_USERNAME_REQUIRED = True
 HOSTED_SITE = bool(os.environ.get('HOSTED_SITE'))
 
 if HOSTED_SITE:
-
+    print("hosted database")
     # Database
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 
 else:
+    print("file")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -168,7 +169,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 if HOSTED_SITE:
-    print("Database is working")
 
     STATIC_URL = '/static/'
     STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
