@@ -140,4 +140,4 @@ def list_evaluation_projects(request, evaluation_id):
     evaluation = Evaluation.objects.get(id=evaluation_id)
 
     projects = Project.objects.filter(evaluation=evaluation)
-    return render(request, "npv/list-evaluations.html", {"projects": projects, "evaluation_name": evaluation.name})
+    return render(request, "npv/list-projects.html", {"projects": projects, "evaluation_name": evaluation.name})

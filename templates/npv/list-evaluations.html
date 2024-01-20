@@ -17,7 +17,7 @@
         <tbody>
             {% for evaluation in evaluations %}
             <tr>
-                <td>{{ evaluation.name }}</td>
+                <td><a href={% url 'list-evaluation-projects' evaluation_id=evaluation.id %}>{{ evaluation.name }}</a></td>
                 <td>{{ evaluation.discount_rate }}</td>
                 <td>{{ evaluation.note }}</td>
                 <td>{{ evaluation.number_of_projects }}</td>
