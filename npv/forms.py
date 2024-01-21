@@ -1,14 +1,15 @@
 from django import forms
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-class NPV_Form(forms.Form):
+class Evaluation_Form(forms.Form):
     evaluation_name = forms.CharField(label="Evaluation Name")
-    initial_investment = forms.FloatField(label="Initial investment")
     discount_rate = forms.FloatField(label="Discount Rate", validators=[MaxValueValidator(100), MinValueValidator(0)])
     note = forms.CharField(label="Note")
+
+
+class Project_Form(forms.Form):
+    initial_investment = forms.FloatField(label="Initial investment")
     project_name = forms.CharField(label="Project Name")
-    project_name_2 = forms.CharField(label="Project Name 2")
-    project_name_3 = forms.CharField(label="Project Name 3")
     #TODO: add seperate cash flow per project
     cash_flow_year_1 = forms.FloatField()
     cash_flow_year_count = forms.FloatField(widget=forms.HiddenInput())
@@ -16,7 +17,7 @@ class NPV_Form(forms.Form):
     def __init__(self, *args, **kwargs):
         extra_fields = kwargs.pop('extra', 0)
 
-        super(NPV_Form, self).__init__(*args, **kwargs)
+        super(Project_Form, self).__init__(*args, **kwargs)
         self.fields['cash_flow_year_count'].initial = 1
 
         for index in range(2, int(extra_fields) + 1):

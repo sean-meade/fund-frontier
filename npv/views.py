@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Evaluation, Project, CashFlow
-from .forms import NPV_Form, ContactForm
+from .forms import Project_Form, Evaluation_Form, ContactForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
@@ -28,8 +28,7 @@ def contact(request):
 @login_required
 def create_evaluation(request):
     if request.method == "POST":
-        form = NPV_Form(request.POST, extra=request.POST.get(
-            'cash_flow_year_count', 0))
+        form = Evaluation_Form(request.POST)
         if form.is_valid():
             # Create list for cash flows
             cash_flows = []
@@ -39,22 +38,29 @@ def create_evaluation(request):
              # Save discount rate
             discount_rate = float(form.cleaned_data["discount_rate"]) / 100
 
+            # TODO: Add No of projects in the rank view
 
             # Create a new evaluation
             evaluation = Evaluation.objects.create(
                 name=form.cleaned_data["evaluation_name"],
                 discount_rate=discount_rate,
                 note=form.cleaned_data["note"],
-                number_of_projects=1,
                 period=len(cash_flows) - 1,
                 user = request.user
             )
             evaluation.save()
 
+            form=Project_Form()
+
+            return render(request, "npv/add-project.html", {"form": form, "evaluation_id": evaluation.id}) 
+
+    form = Evaluation_Form()       
+    return render(request, "npv/create-evaluation.html", {"form": form})
+
 @login_required
-def calculate_NPV_form(request, evaluation):
+def add_project(request, evaluation_id):
     if request.method == "POST":
-        form = NPV_Form(request.POST, extra=request.POST.get(
+        form = Project_Form(request.POST, extra=request.POST.get(
             'cash_flow_year_count', 0))
         if form.is_valid():
             # Create list for cash flows
@@ -65,6 +71,8 @@ def calculate_NPV_form(request, evaluation):
 
             for i in range(1, int(form.cleaned_data["cash_flow_year_count"]) + 1):
                 cash_flows.append(form.cleaned_data["cash_flow_year_"+str(i)])
+
+            evaluation = Evaluation.objects.get(id=evaluation_id)
 
             # Create a new project
             project = Project.objects.create(
@@ -84,22 +92,26 @@ def calculate_NPV_form(request, evaluation):
                     year=i,
                     amount=cash_flow,
                 )
-
-
+                
             
-            # Rank the projects
-            projects_same_evaluation = Project.objects.filter(evaluation=evaluation).order_by('npv').values_list('id', flat=True)
+            if 'complete_eval' in request.POST:
+                # Rank the projects
+                projects_same_evaluation = Project.objects.filter(evaluation=evaluation).order_by('npv').values_list('id', flat=True)
 
-            for rank, project_id in enumerate(projects_same_evaluation):
-                project_by_id = Project.objects.get(id=project_id)
-                setattr(project_by_id, 'rank', rank+1)
-                project_by_id.save()
+                for rank, project_id in enumerate(projects_same_evaluation):
+                    project_by_id = Project.objects.get(id=project_id)
+                    setattr(project_by_id, 'rank', rank+1)
+                    project_by_id.save()
+                
+                return list_evaluation_projects(request, evaluation_id)
 
-            return render(request, "npv/calculate-npv.html", {"form": form}) 
+            form = Project_Form()
 
-    form = NPV_Form()       
-    return render(request, "npv/calculate-npv.html", {"form": form})
+            return render(request, "npv/add-project.html", {"form": form, "evaluation_id": evaluation.id}) 
 
+    form = Project_Form()       
+    return render(request, "npv/add-project.html", {"form": form})
+            
 
 @login_required
 def list_evaluations(request):
@@ -111,5 +123,5 @@ def list_evaluations(request):
 def list_evaluation_projects(request, evaluation_id):
     evaluation = Evaluation.objects.get(id=evaluation_id)
 
-    projects = Project.objects.filter(evaluation=evaluation)
+    projects = Project.objects.filter(evaluation=evaluation).order_by('rank')
     return render(request, "npv/list-projects.html", {"projects": projects, "evaluation_name": evaluation.name})
