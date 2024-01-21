@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 
 
@@ -8,7 +7,8 @@ class Evaluation(models.Model):
     Model representing an evaluation with a name and discount rate.
     """
     name = models.CharField(max_length=255)
-    discount_rate = models.DecimalField(max_digits=5, decimal_places=2, validators=[MaxValueValidator(100), MinValueValidator])
+    # TODO: to 2 decimal places
+    discount_rate = models.FloatField()
     note = models.CharField(max_length=200)
     number_of_projects = models.IntegerField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -28,15 +28,14 @@ class Project(models.Model):
 
     evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    initial_investment = models.DecimalField(max_digits=10, decimal_places=2)
+    initial_investment = models.FloatField()
     period = models.IntegerField()
 
     # Fields to store calculated values
-    npv = models.DecimalField(
-        max_digits=10, decimal_places=2, null=True, blank=True)
+    npv = models.FloatField(
+        null=True, blank=True)
     payback_period = models.IntegerField(null=True, blank=True)
-    annualized_npv = models.DecimalField(
-        max_digits=10, decimal_places=2, null=True, blank=True)
+    annualized_npv = models.FloatField(null=True, blank=True)
 
     # New field to indicate whether to consider further or reject
     consider_further = models.CharField(
@@ -49,13 +48,16 @@ class Project(models.Model):
         return self.name
 
     def calculate_npv(self, cash_flows_input):
-        # cash_flows = [1,2,3,4]
+        if not isinstance(cash_flows_input, list):
+            raise ValueError("cash_flows_input must be a list")
         cash_flows = [-self.initial_investment] + cash_flows_input
-        npv_value = sum(cash_flow / ((1 + float(self.evaluation.discount_rate) / 100) ** t) for t, cash_flow in enumerate(cash_flows))
+        npv_value = sum(cash_flow / ((1 + float(self.evaluation.discount_rate)) ** t) for t, cash_flow in enumerate(cash_flows))
         self.npv = round(npv_value, 2)
         if self.npv < 0:
             self.consider_further = 'rejected'
-
+        else:
+            self.consider_further = 'accepted'
+        self.save()
         return self.npv
 
 
@@ -74,15 +76,17 @@ class Project(models.Model):
 
     def calculate_annualized_npv(self):
         """
-        Calculate Annualized NPV for the project if the periods are different.
+        Calculate Equivalent Annual Annuity (EAA) for the project if the periods are different.
         """
         try:
             npv_value = self.npv
-            annualized_npv = npv_value / ((1 + float(self.evaluation.discount_rate) / 100) ** self.period - 1)
+            discount_rate = float(self.evaluation.discount_rate)
+            annualized_npv = npv_value * discount_rate / (1 - (1 + discount_rate) ** -self.period)
             self.annualized_npv = round(annualized_npv, 2)
             return self.annualized_npv
-        except:
-            return None  # Periods are the same, skip annualization
+        except Exception as e:
+            print(f"Error calculating annualized NPV: {e}")
+            return None
         
         
     def save(self, *args, **kwargs):
@@ -98,7 +102,7 @@ class CashFlow(models.Model):
     """
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     year = models.IntegerField()
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.FloatField()
 
     def __str__(self):
         return f'Year {self.year}: {self.amount}'
