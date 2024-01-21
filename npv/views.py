@@ -33,8 +33,6 @@ def create_evaluation(request):
             # Create list for cash flows
             cash_flows = []
 
-            print("form.cleaned_data", form.cleaned_data)
-
              # Save discount rate
             discount_rate = float(form.cleaned_data["discount_rate"]) / 100
 
@@ -66,7 +64,6 @@ def add_project(request, evaluation_id):
             # Create list for cash flows
             cash_flows = []
 
-            print("form.cleaned_data", form.cleaned_data)
             # Loop through each cash flow and add to cash flow list
 
             for i in range(1, int(form.cleaned_data["cash_flow_year_count"]) + 1):
