@@ -1,7 +1,10 @@
 <nav id="nav">
     <div class="nav-center">
         <div class="nav-header">
-            <a class="" href="{% url 'base' %}">NPV Calculator</a>
+            {% load static %}
+            <a class="" href="{% url 'base' %}">
+                <img class="logo" src="{% static 'images/logo.png' %}" alt="Logo">
+            </a>
             <button class="nav-toggle fas fa-bars" aria-label="Toggle navigation menu">
         </div>
         <div class="links-container" id="navbarNav">

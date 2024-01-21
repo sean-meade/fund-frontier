@@ -15,7 +15,7 @@
 --ff-secondary: "Open Sans", sans-serif;
 /* Commonly used CSS properties for consistency */
 --transition: all 0.3s linear;
---spacing: 0.25rem;
+--spacing: 0.1rem;
 --radius: 0.5rem;
 --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 --max-width: 1170px;
@@ -83,6 +83,11 @@ list-style-type: none;
 
 a {
 text-decoration: none;
+}
+
+.logo {
+color: var(--clr-white);
+height: 80px;
 }
 /* Navbar styling */
 nav {
@@ -192,17 +197,6 @@ opacity: 0.7;
     background-color: #008000;
 }
 
-/* Footer Styling */
-footer.footer {
-    background: var(--clr-primary); /* Bootstrap primary color */
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
 /* Main Content Styling */
 .container {
     padding: 20px;
@@ -291,6 +285,25 @@ input[type=submit] {
 
 input[type=submit]:hover, button.yearr:hover {
     background-color: #025aa5; /* Darken the button color on hover */
+}
+
+/* Footer Styling */
+
+footer p{
+    text-align: center;
+    color: var(--clr-white);
+    text-transform: capitalize;
+    letter-spacing: var(--spacing);
+}
+.footer {
+    background: var(--clr-primary);
+    display: flexbox;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 3rem;
+    max-height: 3rem;
+    padding-left: 1rem;
+    padding-right: 3rem;
 }
 
 /* Responsive Styling */

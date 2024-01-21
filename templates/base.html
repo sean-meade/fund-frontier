@@ -35,6 +35,7 @@
     {% endblock %}
 
     {% block corecss %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/signup_styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/login_styles.css' %}">
@@ -119,15 +120,7 @@
     {% block content %}
     {% endblock %}
 
-    <footer class="py-3 footer">
-
-        <div class="footer-copyright text-center py-2">
-        </div>
-
-    </footer>
-
-
-    </footer>
+    {% include 'footer.html' %}
     {% block extra_js_footer %}
 <script>
         // select the elements from the DOM needed for the navigation toggle functionality.
