@@ -10,7 +10,7 @@ class Evaluation(models.Model):
     name = models.CharField(max_length=255)
     discount_rate = models.DecimalField(max_digits=5, decimal_places=2, validators=[MaxValueValidator(100), MinValueValidator])
     note = models.CharField(max_length=200)
-    number_of_projects = models.IntegerField()
+    number_of_projects = models.IntegerField(null=True, blank=True)
     period = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -52,7 +52,7 @@ class Project(models.Model):
     def calculate_npv(self, cash_flows_input):
         # cash_flows = [1,2,3,4]
         cash_flows = [-self.initial_investment] + cash_flows_input
-        npv_value = sum(cash_flow / ((1 + self.evaluation.discount_rate / 100) ** t) for t, cash_flow in enumerate(cash_flows))
+        npv_value = sum(cash_flow / ((1 + float(self.evaluation.discount_rate) / 100) ** t) for t, cash_flow in enumerate(cash_flows))
         self.npv = round(npv_value, 2)
         if self.npv < 0:
             self.consider_further = 'rejected'
@@ -79,7 +79,7 @@ class Project(models.Model):
         """
         try:
             npv_value = self.npv
-            annualized_npv = npv_value / ((1 + self.evaluation.discount_rate / 100) ** self.period - 1)
+            annualized_npv = npv_value / ((1 + float(self.evaluation.discount_rate) / 100) ** self.period - 1)
             self.annualized_npv = round(annualized_npv, 2)
             return self.annualized_npv
         except:
