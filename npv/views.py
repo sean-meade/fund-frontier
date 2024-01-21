@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, get_object_or_404
 from .models import Evaluation, Project, CashFlow
 from .forms import Project_Form, Evaluation_Form, ContactForm
@@ -152,10 +153,35 @@ def edit_evaluation(request, evaluation_id):
     
     evaluation = Evaluation.objects.get(id=evaluation_id)
     print(evaluation.name)
-    form = Evaluation_Form(initial={
+    data = {
             'discount_rate': evaluation.discount_rate,
             'evaluation_name': evaluation.name, 
-            'note': evaluation.note})
+            'note': evaluation.note}
+    form = Evaluation_Form(initial=data)
 
-    return render(request, "npv/edit-eval.html", {"form": form, "evaluation_id":evaluation_id})
+    return render(request, "npv/edit-eval.html", {"form": form, "evaluation_id":evaluation_id, "eval_name": evaluation.name})
 
+
+@login_required
+def edit_project(request, project_id):
+    # if request.method == "POST":
+    #     form = Project_Form(request.POST)
+
+    project = Project.objects.get(id=project_id)
+
+    data = {}
+
+    cash_flows_dict = {}
+    cash_flows = CashFlow.objects.filter(project=project)
+    for cash_flow in cash_flows:
+        data["cash_flow_year_" + str(cash_flow.year)] = cash_flow.amount
+        cash_flows_dict[str(cash_flow.year)] = float(cash_flow.amount)
+
+    cash_flows_dict.pop("1")
+
+    data["initial_investment"] = project.initial_investment
+    data["project_name"] = project.name
+
+    form = Project_Form(initial=data)
+
+    return render(request, "npv/edit-project.html", {"form": form, "project_id":project_id, "project_name": project.name, "cash_flows_dict": json.dumps(cash_flows_dict)})

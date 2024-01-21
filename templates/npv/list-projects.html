@@ -16,6 +16,7 @@
                 <th scope="col">Annualized NPV</th>
                 <th scope="col">Consider Further</th>
                 <th scope="col">Rank</th>
+                <th scope="col">Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,11 @@
                 <td>{{ project.annualized_npv }}</td>
                 <td>{{ project.get_consider_further_display }}</td>
                 <td>{{ project.rank }}</td>
+                {% if project.evaluation.user == user %}
+                <td><a href="{% url 'edit_project' project_id=project.id %}">Edit</a></td>
+                {% else %}
+                <td></td>
+                {% endif %}
             </tr>
             {% empty %}
             <tr>
