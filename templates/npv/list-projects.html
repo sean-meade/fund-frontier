@@ -18,6 +18,7 @@
                 <th scope="col">Consider Further</th>
                 <th scope="col">Rank</th>
                 <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +35,9 @@
                 <td>{{ project.rank }}</td>
                 {% if project.evaluation.user == user %}
                 <td><a href="{% url 'edit_project' project_id=project.id %}">Edit</a></td>
+                <td><a href="{% url 'delete_project' project_id=project.id %}">Delete</a></td>
                 {% else %}
+                <td></td>
                 <td></td>
                 {% endif %}
             </tr>
@@ -45,6 +48,7 @@
             {% endfor %}
         </tbody>
     </table>
+    <a href="{% url 'add_project' evaluation_id=projects.0.evaluation.id %}" class="btn btn-primary">Add Project</a>
 </div>
 
 {% endblock %}

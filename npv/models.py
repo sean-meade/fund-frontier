@@ -14,7 +14,7 @@ class Evaluation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.namee
+        return self.name
 
 
 class Project(models.Model):
