@@ -11,7 +11,6 @@ class Evaluation(models.Model):
     discount_rate = models.DecimalField(max_digits=5, decimal_places=2, validators=[MaxValueValidator(100), MinValueValidator])
     note = models.CharField(max_length=200)
     number_of_projects = models.IntegerField(null=True, blank=True)
-    period = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

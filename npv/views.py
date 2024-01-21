@@ -13,7 +13,7 @@ def base(request):
 
 def about(request):
     context = {'some_key': 'some_value'}  # Replace with actual context data
-    return render(request, 'about.html', context)
+    return render(request, 'npv/about.html', context)
 
 
 def contact(request):
@@ -43,7 +43,6 @@ def create_evaluation(request):
                 name=form.cleaned_data["evaluation_name"],
                 discount_rate=discount_rate,
                 note=form.cleaned_data["note"],
-                period=len(cash_flows) - 1,
                 user = request.user
             )
             evaluation.save()
