@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extra_meta %}
+<!-- Specific meta tags for the About page can be placed here -->
+{% endblock %}
+{% block extra_css %}
+<!-- Specific CSS for the About page can be placed here -->
+<style>
+    body {
+        background: url("{% static 'images/about-background.jpg' %}") center /cover no-repeat;
+    }
+</style>
+{% endblock %}
+{% block extra_title %}About Fund Frontier{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-white bg-1">About Fund Frontier</h1>
+    <p class="text-center text-white">Empowering your investment decisions with precision and insight.</p>
+    <!-- Introduction and Purpose -->
+    <section class="my-5">
+        <h2 class="text-white text-center">Empowering Investment Decisions</h2>
+        <p class="text-white">Fund Frontier is at the forefront of investment analysis tools, offering a state-of-the-art NPV Calculator designed to empower users in making informed investment decisions. Our platform stands out by providing detailed, comprehensive analyses, enabling a thorough understanding of investment potentials and risks.</p>
+    </section>
+    <!-- Features and Advantages -->
+    <section class="feature-section">
+        <h2 class="my-4 text-white">Features and Advantages</h2>
+        <!-- Feature 1 -->
+        <div class="feature-box">
+            <div class="feature-title">Triple-Project Evaluation</div>
+            <p class="feature-text">
+                Unlike most tools, Fund Frontier enables the simultaneous evaluation of up to three projects, providing a broad perspective and a meticulous comparative analysis.
+            </p>
+        </div>
+        <!-- Feature 2 -->
+        <div class="feature-box">
+            <div class="feature-title">Detailed Metrics</div>
+            <p class="feature-text">
+                Our tool goes beyond mere calculations; it interprets data. With metrics like NPV and Payback Period, you're not just viewing numbers but understanding the story they tell.
+            </p>
+        </div>
+        <!-- Feature 3 -->
+        <div class="feature-box">
+            <div class="feature-title">User-Centric Design</div>
+            <p class="feature-text">
+                Our platform ensures that whether you're a novice investor or a seasoned financial expert, evaluating projects is straightforward and hassle-free.
+            </p>
+        </div>
+        <!-- Feature 4 -->
+        <div class="feature-box">
+            <div class="feature-title">Dynamic Project Management</div>
+            <p class="feature-text">
+                The ability to save, view, modify, and delete projects empowers you with full control over your investment analysis process.
+            </p>
+        </div>
+        <!-- Feature 5 -->
+        <div class="feature-box">
+            <div class="feature-title">Intelligent Project Ranking</div>
+            <p class="feature-text">
+                Navigate investment choices with confidence. Our intelligent ranking system highlights the most lucrative projects, helping you make informed decisions swiftly.
+            </p>
+        </div>
+        <!-- Feature 6 -->
+        <div class="feature-box">
+            <div class="feature-title">Technological Excellence</div>
+            <p class="feature-text">
+                Built on a foundation of robust technologies like Django and Python, Fund Frontier guarantees performance, security, and reliability.
+            </p>
+        </div>
+    </section>
+</div>
+{% endblock %}
+{% block extra_js %}
+<!-- Specific JavaScript for the About page can be placed here -->
+{% endblock %}
