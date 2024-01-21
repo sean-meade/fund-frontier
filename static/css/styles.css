@@ -29,6 +29,7 @@ Global Styles
 html {
 scroll-behavior: smooth;
 }
+
 *,
 ::after,
 ::before {
@@ -36,6 +37,7 @@ margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
+
 body {
 font-family: var(--ff-secondary);
 background: var(--clr-secondary-3);
@@ -43,7 +45,6 @@ color: var(--clr-black);
 line-height: 1.5;
 font-size: 0.875rem;
 }
-
 
 /* Heading and paragrahps styling */
 h1,
@@ -56,23 +57,29 @@ line-height: 1.25;
 margin-bottom: 0.75rem;
 font-family: var(--ff-primary);
 }
+
 h1 {
 font-size: 3rem;
 }
+
 h2 {
 font-size: 2rem;
 }
+
 h3 {
 font-size: 1.25rem;
 }
+
 h4 {
 font-size: 0.875rem;
 }
+
 p {
 margin-bottom: 1.25rem;
 color: var(--clr-black);
 }
 
+/* Utility classes */
 header {
 background: var(--clr-white);
 }
@@ -89,11 +96,13 @@ text-decoration: none;
 color: var(--clr-white);
 height: 100px;
 }
+
 /* Navbar styling */
 nav {
 background: var(--clr-white);
-padding: 1rem 1.5rem;
+padding: 0 1.5rem 1rem 1.5rem;
 }
+
 .fixed-nav {
 position: fixed;
 top: 0;
@@ -102,20 +111,25 @@ width: 100%;
 background: var(--clr-white);
 box-shadow: var(--light-shadow);
 }
+
 .fixed-nav .links a {
 color: var(--clr-black);
 }
+
 .fixed-nav .links a:hover {
 color: var(--clr-secondary);
 }
+
 .fixed-nav .links-container {
 height: auto !important;
 }
+
 .nav-header {
 display: flex;
 align-items: center;
 justify-content: space-between;
 }
+
 .nav-toggle {
 width: 3rem;
 height: 3rem;
@@ -125,6 +139,7 @@ border-color: transparent;
 transition: var(--transition);
 cursor: pointer;
 padding: 0.2rem;
+
 }
 .nav-toggle:hover {
 color: var(--clr-secondary-1);
@@ -136,9 +151,11 @@ height: 0;
 overflow: hidden;
 transition: var(--transition);
 }
+
 .show-links {
 height: 200px;
 }
+
 .links a {
 background: var(--clr-white);
 color: var(--clr-black);
@@ -150,13 +167,14 @@ transition: var(--transition);
 font-weight: bold;
 padding: 0.75rem 0;
 }
+
 .links a:hover {
 color: var(--clr-black);
 }
+
 li {
 padding-top: 1rem;
 }
-
 
 .placeholder-color::placeholder {
 color: var(--clr-primary);
@@ -181,11 +199,13 @@ opacity: 0.7;
     grid-column-start: 1;
     grid-column-end: 4;
 }
+
 /* Button Styling */
 #btn-submit {
     color: white;
     background: #0275d8;
 }
+
 #delete-another {
     color: var(--clr-white);
     background-color: #ff0000;
@@ -287,13 +307,13 @@ input[type=submit]:hover, button.yearr:hover {
 }
 
 /* Footer Styling */
-
 footer p{
     text-align: center;
     color: var(--clr-white);
     text-transform: capitalize;
     letter-spacing: var(--spacing);
 }
+
 .footer {
     background: var(--clr-primary);
     display: flexbox;
@@ -304,44 +324,40 @@ footer p{
     padding-left: 1rem;
     padding-right: 3rem;
 }
-
-/* Responsive Styling */
-@media (max-width: 768px) {
-    footer.footer {
-        padding: 15px 0;
-    }
-
-    .title {
-        font-size: 24px;
-    }
-
-    .form-area, .container {
-        padding: 15px;
-    }
-
-    .grid {
-        grid-template-columns: repeat(2, 90px);
-        grid-template-rows: 50px 50px;
-    }
-    button.year {
-        font-size: 0.6rem;
-    }
-}
-
-/* Utility Classes */
+/* Footer Styling */
 .text-center {
     text-align: center;
 }
-
-/* Add any additional utility classes as needed */
 
 label {
     font-weight: bold;
     color: var(--clr-black);
 }
 
+footer.footer {
+    padding: 15px 0;
+}
+.title {
+    font-size: 24px;
+}
+.form-area, .container {
+    padding: 15px;
+}
+.grid {
+    grid-template-columns: repeat(2, 90px);
+    grid-template-rows: 50px 50px;
+}
+button.year {
+    font-size: 0.6rem;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    
+}
+
 /* Media queries for different screen sizes */
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) {
     h1 {
         font-size: 4rem;
     }
@@ -368,8 +384,7 @@ label {
         background: var(--clr-white);
     }
     .nav-center {
-        width: 90vw;
-        max-width: 1170px;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -389,7 +404,7 @@ label {
     .links a {
         background: transparent;
         color: var(--clr-black);
-        font-size: 0.8rem;
+        font-size: 1.5rem;
         text-transform: capitalize;
         letter-spacing: var(--spacing);
         display: block;
