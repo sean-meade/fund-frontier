@@ -4,7 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Evaluation_Form(forms.Form):
     evaluation_name = forms.CharField(label="Evaluation Name")
     discount_rate = forms.FloatField(label="Discount Rate", validators=[MaxValueValidator(100), MinValueValidator(0)])
-    note = forms.CharField(label="Note")
+    note = forms.CharField(label="Note", required=False)
 
 
 class Project_Form(forms.Form):

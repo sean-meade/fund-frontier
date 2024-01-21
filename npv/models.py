@@ -9,7 +9,7 @@ class Evaluation(models.Model):
     name = models.CharField(max_length=255)
     # TODO: to 2 decimal places
     discount_rate = models.FloatField()
-    note = models.CharField(max_length=200)
+    note = models.CharField(max_length=200, null=True, blank=True)
     number_of_projects = models.IntegerField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
