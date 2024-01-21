@@ -74,7 +74,7 @@ color: var(--clr-black);
 }
 
 header {
-background: var(--clr-primary);
+background: var(--clr-white);
 }
 
 ul {
@@ -87,7 +87,7 @@ text-decoration: none;
 
 .logo {
 color: var(--clr-white);
-height: 80px;
+height: 100px;
 }
 /* Navbar styling */
 nav {
@@ -117,15 +117,14 @@ align-items: center;
 justify-content: space-between;
 }
 .nav-toggle {
-width: 2rem;
-height: 2rem;
+width: 3rem;
+height: 3rem;
 color: var(--clr-secondary-1);
-background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-/* Custom SVG for the toggler icon */
+background: transparent;
 border-color: transparent;
 transition: var(--transition);
 cursor: pointer;
-
+padding: 0.2rem;
 }
 .nav-toggle:hover {
 color: var(--clr-secondary-1);
@@ -366,12 +365,11 @@ label {
     }
 
     nav {
-        background: var(--clr-primary);
+        background: var(--clr-white);
     }
     .nav-center {
         width: 90vw;
         max-width: 1170px;
-        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -390,17 +388,17 @@ label {
     }
     .links a {
         background: transparent;
-        color: var(--clr-white);
-        font-size: 0.7rem;
+        color: var(--clr-black);
+        font-size: 0.8rem;
         text-transform: capitalize;
         letter-spacing: var(--spacing);
         display: block;
         transition: var(--transition);
-        margin: 0 1rem;
+        margin: 0 0.5rem;
         font-weight: bold;
         padding: 0;
     }
     .links a:hover {
-        color: var(--clr-white);
+        color: var(--clr-secondary-4);
     }
 }
