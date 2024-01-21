@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block extra_meta %}
+<!-- Specific meta tags for the Contact page can be placed here -->
+{% endblock %}
+{% block extra_css %}
+<!-- Specific CSS for the Contact page can be placed here -->
+<style>
+    .contact-container{
+        height: 100vh;
+    }
+    .contact-text {
+        margin-top: 15px;
+    }
+    
+    .container-contact {
+        
+        height: 100vh;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        /* Make sure it's a positioned element for absolute positioning */
+    }
+    .contact-footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    }
+    
+    .contact {
+        min-width: 100%;
+        min-height: 100%;
+        background-color: rgba(222, 232, 222, 0.8);
+        padding: 50px;
+        margin-top: 5%;
+        margin-left: 30%;
+        align-items: center;
+        text-align: center;
+        border-radius: 10%;
+    }
+    
+    .container-con {
+        max-width: 800px;
+    }
+    
+    .container-con h2 {
+        font-size: 36px;
+        margin-bottom: 40px;
+        color: red;
+    }
+    
+    .contact-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        align-content: center;
+        margin-left: 23%;
+    }
+    
+    .contact-form h3,
+    .contact-info h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        /* Fix the typo here */
+        color: #00CC00;
+    }
+    
+    button {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #1ecc75;
+        color: rgb(21, 18, 18);
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+    
+    button:hover {
+        background-color: #34a654;
+    }
+    
+    .contact-info {
+        text-align: left;
+    }
+    
+    .contact-info h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #1ecc75;
+    }
+    .contact-info p {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #000;
+    }
+    
+    .contact-info i {
+        color: #4caf50;
+        margin-right: 10px;
+    }
+      /* for the team member */
+    
+    .section-title h1 {
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 0;
+        color: #34a65f;
+        margin-top: 7rem;
+        font-weight: 700;
+    }
+    
+    .team-area {
+        width: 70%;
+        background-color: #e4e6e5;
+        margin-left: 10%;
+        text-align: center;
+    }
+
+    .team-area h1 {
+        color:#006205;
+    }
+    
+    .team-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        height: 100%;
+    }
+    
+    .box {
+        width: 250px;
+        margin: 20px;
+        padding: 30px 10px;
+        background: #cbc8c8;
+        text-align: center;
+        overflow: hidden;
+        box-shadow: 10px 10px 15px #c7c4c4, -10px -10px 15px #fff;
+    }
+    
+    .box img {
+        width: 104px;
+        height: 104px; /* Set a fixed height */
+        border-radius: 50%; /* Make image circular */
+        padding: 5px;
+        margin: 0 auto; /* Center the image horizontally */
+        display: block; /* Required to enable margin: 0 auto to work */
+        border: 2px solid #063251;
+        backface-visibility: hidden;
+        transition: transform 0.5s ease-in-out;
+    }
+    
+    .box:hover img {
+        transform: scale(1.4);
+    }
+    
+    .box h2 {
+        font-size: 20px;
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+    
+    .box span {
+        font-size: 14px;
+        display: block;
+        font-style: italic;
+        margin-bottom: 25px;
+    }
+    .box ul {
+        padding: 0;
+    }
+    .box ul li {
+        display: inline-block;
+        list-style: none;
+    }
+    
+    .box ul li a {
+        color: #c51a1a;
+        font-size: 2rem;
+    }
+    
+    .box ul li a .fa {
+        color: #c51a1a;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #999;
+        border-radius: 50%;
+        margin: 5px;
+        transition: 0.3s;
+        font-size: 2rem;
+    }
+    
+    .box ul li a:hover .fa {
+        color: #34a65f;
+    }
+</style>
+{% endblock %}
+{% block extra_title %}Contact Us | Fund Frontier{% endblock %}
+{% block content %}
+<div class="contact-container">
+    <div class="team-area">
+        <div class="section-title">
+            <h1>Meet Hackathon Team 5</h1>
+        </div>
+        <div class="team-box">
+            <div class="box">
+                <img src="{% static 'images/nate.png' %}" alt="team member">
+                <h2 class="contact-text lobster-text"> Nate</h2>
+                <span class="lobster-text">Backend</span>
+
+                <ul>
+                    <li>
+                        <a href="https://www.linkedin.com/in/redsskull/" target="_blank">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="box">
+                <img src="{% static 'images/sean.png' %}" alt="team member">
+                <h2 class="contact-text lobster-text"> Sean</h2>
+                <span class="lobster-text">Backend</span>
+                <ul>
+                    <li>
+                        <a href="https://www.linkedin.com/in/seanmeadedev/" target="_blank">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="box">
+                <img src="{% static 'images/bogdan.png' %}" alt="team member">
+                <h2 class="contact-text lobster-text"> Bogdan</h2>
+                <span class="lobster-text">Scrum Master</span>
+                <ul>
+                    <li>
+                        <a href="https://www.linkedin.com/in/bogdan-gugu-83ba4b11a/" target="_blank">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="box">
+                <img src="{% static 'images/marko.png' %}" alt="team member">
+                <h2 class="contact-text lobster-text"> Marko</h2>
+                <span class="lobster-text">Frontend:Authentication Design</span>
+                <ul>
+                    <li>
+                        <a href="https://www.linkedin.com/in/markohautala/" target="_blank">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="box">
+                <img src="{% static 'images/johnny.png' %}" alt="team member">
+                <h2 class="contact-text lobster-text"> Johnny</h2>
+                <span class="lobster-text">Frontend:Navigation Design</span>
+                <ul>
+                    <li>
+                        <a href="/" target="_blank">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="box">
+                <img src="{% static 'images/andreas.png' %}" alt="team member">
+                <h2 class="contact-text lobster-text"> Andreas</h2>
+                <span class="lobster-text">Documentation</span>
+                <ul>
+                    <li>
+                        <a href="https://www.linkedin.com/in/andreas-jelenko-03b061172/" target="_blank">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<!-- Specific JavaScript for the Contact page can be placed here -->
+<script src="https://kit.fontawesome.com/27cbf33ba8.js" crossorigin="anonymous"></script>
+{% endblock %}
