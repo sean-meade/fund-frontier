@@ -33,8 +33,7 @@
 
     count = Object.keys(cash_flows).length
 
-    console.log(cash_flows)
-    console.log(count)
+    $("[name=cash_flow_year_count]").val(count);
 
     for (let i = 2 ; i <= count +1; i++) {
         let element = $('<input type="number" value="'+ cash_flows[i] +'"/>');
