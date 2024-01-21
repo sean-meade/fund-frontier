@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -20,7 +21,7 @@
             {% for evaluation in evaluations %}
             <tr>
                 <td><a href="{% url 'list-evaluation-projects' evaluation_id=evaluation.id %}">{{ evaluation.name }}</a></td>
-                <td>{{ evaluation.discount_rate }}</td>
+                <td>{{ evaluation.discount_rate }} %</td>
                 <td>{{ evaluation.note }}</td>
                 <td>{{ evaluation.number_of_projects }}</td>
                 <td>{{ evaluation.period }}</td>
