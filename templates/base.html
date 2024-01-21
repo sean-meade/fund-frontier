@@ -123,25 +123,25 @@
     {% include 'footer.html' %}
     {% block extra_js_footer %}
 <script>
-     // select the elements from the DOM needed for the navigation toggle functionality.
-     const navToggle = document.querySelector('.nav-toggle');
-        const linksContainer = document.querySelector('.links-container');
-        const links = document.querySelector('.links');
+    // select the elements from the DOM needed for the navigation toggle functionality.
+    const navToggle = document.querySelector('.nav-toggle');
+    const linksContainer = document.querySelector('.links-container');
+    const links = document.querySelector('.links');
 
-        // add an event listener for a click event on the navigation toggle button.
-        navToggle.addEventListener('click', function () {
-        const linksHeight = links.getBoundingClientRect().height;
-        const containerHeight = linksContainer.getBoundingClientRect().height;
+    // add an event listener for a click event on the navigation toggle button.
+    navToggle.addEventListener('click', function () {
+    const linksHeight = links.getBoundingClientRect().height;
+    const containerHeight = linksContainer.getBoundingClientRect().height;
 
-        // Check if the links container is currently collapsed (height is 0).
-        if (containerHeight === 0) {
-            // If it's collapsed
-            linksContainer.style.height = `${linksHeight}px`;
-        } else {
-            // If it's expanded
-            linksContainer.style.height = 0;
-        }
-        });
+    // Check if the links container is currently collapsed (height is 0).
+    if (containerHeight === 0) {
+        // If it's collapsed
+        linksContainer.style.height = `${linksHeight}px`;
+    } else {
+        // If it's expanded
+        linksContainer.style.height = 0;
+    }
+    });
 
     let form_count = Number($("[name=cash_flow_year_count]").val());
     // get extra form count so we know what index to use for the next item.
