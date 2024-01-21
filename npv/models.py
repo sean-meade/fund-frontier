@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Evaluation(models.Model):
@@ -7,14 +8,13 @@ class Evaluation(models.Model):
     Model representing an evaluation with a name and discount rate.
     """
     name = models.CharField(max_length=255)
-    # TODO: to 2 decimal places
-    discount_rate = models.FloatField()
+    discount_rate = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(0), MaxValueValidator(1)])  # store as decimal between 0 and 1 which i a %
     note = models.CharField(max_length=200, null=True, blank=True)
     number_of_projects = models.IntegerField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.namee
 
 
 class Project(models.Model):
@@ -28,7 +28,8 @@ class Project(models.Model):
 
     evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    initial_investment = models.FloatField()
+    initial_investment = models.DecimalField(max_digits=10, decimal_places=2)  # store as decimal
+    cash_flow_year_1 = models.DecimalField(max_digits=10, decimal_places=2, null=True)  # store as decimal
     period = models.IntegerField()
 
     # Fields to store calculated values

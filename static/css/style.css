@@ -174,3 +174,11 @@ input[type=submit]:hover, button.yearr:hover {
 .nav-text-color {
     color: #fff !important; /* Change as needed */
 }
+
+input.percentage::after {
+    content: '%';
+}
+
+input.currency::before {
+    content: '$';
+}
