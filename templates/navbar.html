@@ -1,0 +1,47 @@
+{% load static %}
+
+<nav id="nav">
+    <div class="nav-center">
+        <div class="nav-header">
+            <a class="" href="{% url 'base' %}">
+                <img class="logo" src="{% static 'images/logo.png' %}" alt="Logo">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars fa-3x"></i>
+            </button>
+        </div>
+        <div class="links-container" id="navbarNav">
+            <ul class="links">
+                <li>
+                    <a class="scroll-link active" aria-current="page" href="{% url 'base' %}">Home</a>
+                </li>
+                <li>
+                    <a class="scroll-link" href="{% url 'about' %}">About</a>
+                </li>
+                <li>
+                    <a class="scroll-link" href="{% url 'contact' %}">Contact Us</a>
+                </li>
+                <!-- Authentication Links -->
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="scroll-link" href="{% url 'create_evaluation' %}">Create Evaluation</a>
+                </li>
+                <li>
+                    <a class="scroll-link" href="{% url 'list-evaluations' %}">List Evaluations</a>
+                </li>
+                <li>
+                    <a class="scroll-link" href="{% url 'account_logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li>
+                    <a class="srcoll-link" href="{% url 'account_login' %}">Login</a>
+                </li>
+                <li>
+                    <a class="scroll-link" href="{% url 'account_signup' %}">Sign Up</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+</nav>

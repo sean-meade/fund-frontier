@@ -3,28 +3,26 @@
 {% block content %}
 
 <div class="container">
-    <div class="title">Add Project</div>
+    <div class="title">NPV Calculate</div>
 
     <div class="col-md-5">
         <div class="form-area">
             {% comment %} TODO: Limit discount rate {% endcomment %}
-            
-            <form action="{% url 'add_project' evaluation_id=evaluation_id %}" method="post">
-                
+            <form action="{% url 'calculate-npv' %}" method="post">
                 <br style="clear:both">
-                <h4 style="margin-bottom: 25px; text-align: center;">Project Details</h3>
+                <h4 style="margin-bottom: 25px; text-align: center;">Calculate NPV</h3>
                 {% csrf_token %}
                 <div id="forms">
                     {{ form.as_p }}
                 </div>
                 <button class="year" type="button" id="add-another">add another</button>
                 <button class="year" type="button" id="delete-another">delete another</button>
-                <input type="submit" name="add_next_project" value="Add Next Project">
-                <input type="submit" name="complete_eval" value="Complete Evaluation">
+                <input type="submit" value="Submit">
             </form>
         </div>
         </div>
     </div>
+    <p>NPV: € {{ npv }}</p>
 
 
 
