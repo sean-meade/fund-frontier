@@ -3,14 +3,14 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Evaluation_Form(forms.Form):
     evaluation_name = forms.CharField(label="Evaluation Name")
-    discount_rate = forms.FloatField(label="Discount Rate", widget=forms.NumberInput(attrs={'type': 'number', 'step': '0.01', 'class': 'percentage'}), validators=[MaxValueValidator(100), MinValueValidator(0)])
+    discount_rate = forms.FloatField(label="Discount Rate(%)", widget=forms.NumberInput(attrs={'type': 'number', 'step': '0.01', 'class': 'percentage'}), validators=[MaxValueValidator(100), MinValueValidator(0)])
     note = forms.CharField(label="Note(optional)", required=False)
 
 
 class Project_Form(forms.Form):
     initial_investment = forms.FloatField(label="Initial investment", widget=forms.NumberInput(attrs={'type': 'number', 'class': 'currency'}))
     project_name = forms.CharField(label="Project Name")
-    cash_flow_year_1 = forms.FloatField(widget=forms.NumberInput(attrs={'type': 'number', 'class': 'currency'}))
+    cash_flow_year_1 = forms.FloatField(label = "Cash flow year 1 $", widget=forms.NumberInput(attrs={'type': 'number', 'class': 'currency'}))
     cash_flow_year_count = forms.FloatField(widget=forms.HiddenInput())
 
     
