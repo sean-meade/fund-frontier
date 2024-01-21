@@ -24,7 +24,7 @@ Welcome to Fund Frontier, a NPV Calculator designed to empower users in making i
 6. Project Ranking: Projects are ranked from highest to lowest NPV. If NPV is negative, the project is flagged for rejection. Users receive the NPV and Breakeven Period for informed decision-making.
 
 #### Future Features
-1. 
+1. We would like to have the feature to add a different discount rates to different periods of a project.
 2. 
 
 <hr>
