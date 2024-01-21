@@ -25,10 +25,8 @@ def contact(request):
         form = ContactForm()
     return render(request, 'contact.html', {'form': form})
 
-
 @login_required
-
-def calculate_NPV_form(request):
+def create_evaluation(request):
     if request.method == "POST":
         form = NPV_Form(request.POST, extra=request.POST.get(
             'cash_flow_year_count', 0))
@@ -37,12 +35,8 @@ def calculate_NPV_form(request):
             cash_flows = []
 
             print("form.cleaned_data", form.cleaned_data)
-            # Loop through each cash flow and add to cash flow list
 
-            for i in range(1, int(form.cleaned_data["cash_flow_year_count"]) + 1):
-                cash_flows.append(form.cleaned_data["cash_flow_year_"+str(i)])
-
-            # Save discount rate
+             # Save discount rate
             discount_rate = float(form.cleaned_data["discount_rate"]) / 100
 
 
@@ -56,6 +50,21 @@ def calculate_NPV_form(request):
                 user = request.user
             )
             evaluation.save()
+
+@login_required
+def calculate_NPV_form(request, evaluation):
+    if request.method == "POST":
+        form = NPV_Form(request.POST, extra=request.POST.get(
+            'cash_flow_year_count', 0))
+        if form.is_valid():
+            # Create list for cash flows
+            cash_flows = []
+
+            print("form.cleaned_data", form.cleaned_data)
+            # Loop through each cash flow and add to cash flow list
+
+            for i in range(1, int(form.cleaned_data["cash_flow_year_count"]) + 1):
+                cash_flows.append(form.cleaned_data["cash_flow_year_"+str(i)])
 
             # Create a new project
             project = Project.objects.create(
@@ -77,44 +86,7 @@ def calculate_NPV_form(request):
                 )
 
 
-            # Create a second project
-            project2 = Project.objects.create(
-                evaluation=evaluation,
-
-                name=form.cleaned_data["project_name_2"],
-                initial_investment=form.cleaned_data["initial_investment"],
-                period=len(cash_flows) - 1
-            )
             
-            for i, cash_flow in enumerate(cash_flows, start=1):
-                CashFlow.objects.create(
-                    project=project,
-                    year=i,
-                    amount=cash_flow,
-                )
-
-            project2.calculate_npv(cash_flows)
-            project2.calculate_payback_period(cash_flows)
-            project2.save()
-
-
-            project3 = Project.objects.create(
-                evaluation=evaluation,
-                name=form.cleaned_data["project_name_3"],
-                initial_investment=form.cleaned_data["initial_investment"],
-                period=len(cash_flows) - 1
-            )
-            
-            for i, cash_flow in enumerate(cash_flows, start=1):
-                CashFlow.objects.create(
-                    project=project,
-                    year=i,
-                    amount=cash_flow,
-                )
-            project3.calculate_npv(cash_flows)
-            project3.calculate_payback_period(cash_flows)
-            project3.save()
-
             # Rank the projects
             projects_same_evaluation = Project.objects.filter(evaluation=evaluation).order_by('npv').values_list('id', flat=True)
 
