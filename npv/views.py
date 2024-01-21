@@ -13,7 +13,7 @@ def base(request):
 
 def about(request):
     context = {'some_key': 'some_value'}  # Replace with actual context data
-    return render(request, 'npv/about.html', context)
+    return render(request, 'about.html', context)
 
 
 def contact(request):
