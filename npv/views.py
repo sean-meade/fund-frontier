@@ -122,3 +122,40 @@ def list_evaluation_projects(request, evaluation_id):
 
     projects = Project.objects.filter(evaluation=evaluation).order_by('rank')
     return render(request, "npv/list-projects.html", {"projects": projects, "evaluation_name": evaluation.name})
+
+
+@login_required
+def edit_evaluation(request, evaluation_id):
+    if request.method == "POST":
+        form = Evaluation_Form(request.POST)
+        if form.is_valid():
+            # Create list for cash flows
+            cash_flows = []
+
+             # Save discount rate
+            discount_rate = float(form.cleaned_data["discount_rate"]) / 100
+
+            # TODO: Add No of projects in the rank view
+
+            # Create a new evaluation
+            evaluation = Evaluation.objects.create(
+                name=form.cleaned_data["evaluation_name"],
+                discount_rate=discount_rate,
+                note=form.cleaned_data["note"],
+                period=len(cash_flows) - 1,
+                user = request.user
+            )
+            evaluation.save()
+
+        evaluations = Evaluation.objects.all().order_by('-id')
+        return render(request, "npv/list-evaluations.html", {"evaluations": evaluations})
+    
+    evaluation = Evaluation.objects.get(id=evaluation_id)
+    print(evaluation.name)
+    form = Evaluation_Form(initial={
+            'discount_rate': evaluation.discount_rate,
+            'evaluation_name': evaluation.name, 
+            'note': evaluation.note})
+
+    return render(request, "npv/edit-eval.html", {"form": form, "evaluation_id":evaluation_id})
+
