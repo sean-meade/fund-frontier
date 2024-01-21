@@ -11,33 +11,104 @@
     body {
         background: url("{% static 'images/about-background.jpg' %}") center /cover no-repeat;
     }
+
+    /* Intro Container */ 
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+#innovate {
+    font: 'Arial', sans-serif;
+    color: white !important;
+}
+#innovatee {
+    font: 'Arial', sans-serif;
+    color: white !important;
+}
+
+#empower {
+    color: white !important;
+}
+
+#empowerr {
+    color: white !important;
+}
+
+
+.animated {
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out; /* Smoother transition for sliding in */
+}
+
+.slideInFromRight {
+    animation-name: slideInFromRight;
+}
+
+.slideInFromLeft {
+    animation-name: slideInFromLeft;
+}
+
+/* Intro Text Container */
+.intro-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
 </style>
 {% endblock %}
 {% block extra_title %}About Fund Frontier{% endblock %}
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center text-white bg-1">About Fund Frontier</h1>
-    <p class="text-center text-white">Empowering your investment decisions with precision and insight.</p>
+    <div class="intro-container animated slideInFromRight">
+        <h1 class="text-center text-white">About Fund Frontier</h1>
+        <p class="text-center text-white">Empowering your investment decisions with precision and insight.</p>
+    </div>
     <!-- Introduction and Purpose -->
-    <section class="my-5">
+    <section class="my-5 animated slideInFromLeft">
         <h2 class="text-white text-center">Empowering Investment Decisions</h2>
-        <p class="text-white">Fund Frontier is at the forefront of investment analysis tools, offering a state-of-the-art NPV Calculator designed to empower users in making informed investment decisions. Our platform stands out by providing detailed, comprehensive analyses, enabling a thorough understanding of investment potentials and risks.</p>
-    </section>
-    <!-- Features and Advantages -->
-    <section class="feature-section">
-        <h2 class="my-4 text-white">Features and Advantages</h2>
-    <h1 class="title text-center">About Fund Frontier</h1>
-    <p class="text-center text-white">Empowering your investment decisions with precision and insight.</p>
-    <!-- Introduction and Purpose -->
-    <section class="my-5">
-        <h2 class="text-primary">Empowering Investment Decisions</h2>
-        <p>
+        <p class="text-center text-white">
             Fund Frontier is at the forefront of investment analysis tools, offering a state-of-the-art NPV Calculator designed to empower users in making informed investment decisions. Our platform stands out by providing detailed, comprehensive analyses, enabling a thorough understanding of investment potentials and risks.
         </p>
     </section>
+    <!-- Additional Section -->
+    <section class="my-5 animated slideInFromRight">
+        <h2 class="text-primary text-center" id="innovate">Innovative Analysis Tools</h2>
+        <p class="text-primary text-center" id="innovatee">
+            Explore new horizons in investment with Fund Frontier's innovative suite of analytical tools. Uncover the hidden value in your portfolio with our expert insights and user-friendly interface.
+        </p>
+    </section>
+
+    <!-- Introduction and Purpose -->
+    <section class="my-5 animated slideInFromLeft">
+        <h2 class="text-primary text-center" id="empower">Empowering Investment Decisions</h2>
+        <p class="text-primary text-center"id="empowerr">
+            Fund Frontier is at the forefront of investment analysis tools, offering a state-of-the-art NPV Calculator designed to empower users in making informed investment decisions. Our platform stands out by providing detailed, comprehensive analyses, enabling a thorough understanding of investment potentials and risks.
+        </p>
+    </section>
+    </div>
     <!-- Features and Advantages -->
+    <div class="container mt-5">
     <section class="feature-section">
-        <h2 class="my-4">Features and Advantages</h2>
+        <h2 class="text-white">Features and Advantages</h2>
         <!-- Feature 1 -->
         <div class="feature-box">
             <div class="feature-title">Triple-Project Evaluation</div>

@@ -10,13 +10,27 @@
                 <i class="fas fa-bars fa-3x"></i>
             </button>
         </div>
+        <div class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <span class="navbar-text"><strong>Hello: {{ user.username }}</strong></span>
+            {% endif %}
+        </div>
+        <div class="container">
+            <div class="row">
+                <div >
+                    {% for message in messages %}
+                    <div  {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+                        {{ message | safe }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
         <div class="links-container" id="navbarNav">
             <ul class="links">
                 <li>
                     <a class="scroll-link active" aria-current="page" href="{% url 'base' %}">Home</a>
-                </li>
-                <li>
-                    <a class="scroll-link" href="{% url 'about' %}">About</a>
                 </li>
                 <li>
                     <a class="scroll-link" href="{% url 'contact' %}">Contact Us</a>

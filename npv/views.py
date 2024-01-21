@@ -8,23 +8,13 @@ from django.http import HttpResponse
 
 def base(request):
     context = {'some_key': 'some_value'}  # Replace with actual context data
-    return render(request, 'base.html', context)
-
-
-def about(request):
-    context = {'some_key': 'some_value'}  # Replace with actual context data
     return render(request, 'npv/about.html', context)
 
 
+
 def contact(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            # Process the form data (e.g., send an email)
-            pass  # Implement the action
-    else:
-        form = ContactForm()
-    return render(request, 'contact.html', {'form': form})
+    context = {'some_key': 'some_value'}
+    return render(request, 'npv/contact.html', context)
 
 @login_required
 def create_evaluation(request):

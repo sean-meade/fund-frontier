@@ -317,7 +317,7 @@ input[type=submit]:hover, button.yearr:hover {
 }
 
 /* Footer Styling */
-footer p{
+footer p {
     text-align: center;
     color: var(--clr-white);
     text-transform: capitalize;
@@ -365,7 +365,11 @@ button.year {
 .feature-section {
     text-align: center;
     padding: 4rem 0;
+    max-width: 65%; /* Maximum width of the container to 65% of the parent element */
+    margin-left: auto; /* Center the container on the page */
+    margin-right: auto; /* Center the container on the page */
 }
+
 .feature-box {
     background: var(--clr-white);
     border: 2px solid var(--clr-secondary-1);
@@ -374,23 +378,33 @@ button.year {
     margin-bottom: 2rem;
     transition: box-shadow 0.3s ease-in-out, transform 0.3s ease;
 }
+
 .feature-box:hover {
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    transition: var(--transition);
-    scale: 1.01;
+    transform: scale(1.01); /* Corrected property name for scaling */
 }
+
 .feature-icon {
     /* Style your icons here */
     size: 1rem;
 }
+
 .feature-title {
+    font-family:'cursive';
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
 }
+
 .feature-text {
+    font-family:'cursive';
     font-size: 1rem;
     line-height: 1.6;
+}
+
+.feature-text p {
+    font-family:'cursive';
+    font-size: 1rem;
 }
 
 .bg-1 {
@@ -572,3 +586,4 @@ button.year {
 .link:hover {
     text-decoration: underline;
 }
+

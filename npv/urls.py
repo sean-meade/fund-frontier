@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.base, name='base'),  # URL for the home page
-    path('about/', views.about, name='about'),  # URL for the about page
     path('contact/', views.contact, name='contact'),  # URL for the contact page
     path('create_evaluation/', views.create_evaluation, name='create_evaluation'),  # URL for the NPV calculation form
     path('edit_evaluation/<str:evaluation_id>/', views.edit_evaluation, name='edit_evaluation'),
