@@ -1,7 +1,8 @@
+{% load static %}
+
 <nav id="nav">
     <div class="nav-center">
         <div class="nav-header">
-            {% load static %}
             <a class="" href="{% url 'base' %}">
                 <img class="logo" src="{% static 'images/logo.png' %}" alt="Logo">
             </a>
@@ -23,7 +24,7 @@
                 <!-- Authentication Links -->
                 {% if user.is_authenticated %}
                 <li>
-                    <a class="scroll-link" href="/">Calculate NPV</a>
+                    <a class="scroll-link" href="{% url 'create_evaluation' %}">Create Evaluation</a>
                 </li>
                 <li>
                     <a class="scroll-link" href="{% url 'list-evaluations' %}">List Evaluations</a>
