@@ -123,8 +123,8 @@
     {% include 'footer.html' %}
     {% block extra_js_footer %}
 <script>
-        // select the elements from the DOM needed for the navigation toggle functionality.
-        const navToggle = document.querySelector('.nav-toggle');
+     // select the elements from the DOM needed for the navigation toggle functionality.
+     const navToggle = document.querySelector('.nav-toggle');
         const linksContainer = document.querySelector('.links-container');
         const links = document.querySelector('.links');
 
@@ -142,35 +142,40 @@
             linksContainer.style.height = 0;
         }
         });
-        let form_count = Number($("[name=cash_flow_year_count]").val());
-        // get extra form count so we know what index to use for the next item.
 
+    let form_count = Number($("[name=cash_flow_year_count]").val());
+    // get extra form count so we know what index to use for the next item.
 
-        $("#add-another").click(function () {
-            form_count++;
+    // When the add button is clicked
+    $("#add-another").click(function () {
+        // Add one to the count
+        form_count++;
 
-            let element = $('<input type="number"/>');
+        // create the input element
+        let element = $('<input type="number"/>');
 
-            element.attr('name', 'cash_flow_year_' + form_count);
-            $("#forms").append(element);
-            // build element and append it to our forms container
+        // Add the name so you know which value belongs to which year
+        element.attr('name', 'cash_flow_year_' + form_count);
+        // Add that field to the form
+        $("#forms").append(element);
 
-            $("[name=cash_flow_year_count]").val(form_count);
-            // increment form count so our view knows to populate 
-            // that many fields for validation
-            //TODO: add 3 buttons for add and delete cash flows of each project
-        })
+        // add the count back to the form so it can be grabbed on the next click
+        $("[name=cash_flow_year_count]").val(form_count);
+    
+    })
 
-        $("#delete-another").click(function() {
-            
-            $('#forms input:last').remove();
-            form_count --;
-            // build element and append it to our forms container
+    // When the delete button is clicked
+    $("#delete-another").click(function() {
+        
+        // remove the last added input
+        $('#forms input:last').remove();
+        // reduce the count
+        form_count --;
 
-            $("[name=cash_flow_year_count]").val(form_count);
-            // increment form count so our view knows to populate 
-            // that many fields for validation
-        })
+        // add the count back to the form so it can be grabbed on the next click
+        $("[name=cash_flow_year_count]").val(form_count);
+
+    })
 </script>
     {% endblock %}
 </body>
