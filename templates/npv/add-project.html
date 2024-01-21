@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+
 
 {% block content %}
 
@@ -38,31 +40,28 @@
     $("#add-another").click(function () {
         // Add one to the count
         form_count++;
-
+        // create the input element
+        let element1 = $('<label>Cash flow year ' + form_count + ' ($)</label>');
+        $("#forms").append(element1);
         // create the input element
         let element = $('<input type="number"/>');
-
         // Add the name so you know which value belongs to which year
         element.attr('name', 'cash_flow_year_' + form_count);
+        element.attr('label', 'Cash flow year ' + form_count + ' ($)');
         // Add that field to the form
         $("#forms").append(element);
-
         // add the count back to the form so it can be grabbed on the next click
         $("[name=cash_flow_year_count]").val(form_count);
-    
     })
-
     // When the delete button is clicked
     $("#delete-another").click(function() {
-        
         // remove the last added input
         $('#forms input:last').remove();
+        $("#forms label:last").remove();
         // reduce the count
         form_count --;
-
         // add the count back to the form so it can be grabbed on the next click
         $("[name=cash_flow_year_count]").val(form_count);
-
     })
 </script>
 {% endblock %}

@@ -58,8 +58,12 @@ def add_project(request, evaluation_id):
             cash_flows = []
 
             # Loop through each cash flow and add to cash flow list
-            for i in range(1, int(form.cleaned_data["cash_flow_year_count"]) + 1):
-                cash_flows.append(form.cleaned_data["cash_flow_year_"+str(i)])
+            cash_flow_year_count = form.cleaned_data.get("cash_flow_year_count")
+            if cash_flow_year_count is not None:
+                for i in range(1, int(cash_flow_year_count) + 1):
+                    cash_flow_key = "cash_flow_year_" + str(i)
+                    if cash_flow_key in form.cleaned_data:
+                        cash_flows.append(form.cleaned_data[cash_flow_key])
 
             evaluation = Evaluation.objects.get(id=evaluation_id)
 
@@ -110,7 +114,7 @@ def add_project(request, evaluation_id):
     # display an empty page when you call this page (I dont think is actually ever hit 
     # unless the user goes directly to the url)
     form = Project_Form()       
-    return render(request, "npv/add-project.html", {"form": form})
+    return render(request, "npv/add-project.html", {"form": form, "evaluation_id": evaluation_id})
             
 
 @login_required
@@ -178,8 +182,12 @@ def edit_project(request, project_id):
             cash_flows = []
 
             # Loop through each cash flow and add to cash flow list
-            for i in range(1, int(form.cleaned_data["cash_flow_year_count"]) + 1):
-                cash_flows.append(form.cleaned_data["cash_flow_year_"+str(i)])
+            cash_flow_year_count = form.cleaned_data.get("cash_flow_year_count")
+            if cash_flow_year_count is not None:
+                for i in range(1, int(cash_flow_year_count) + 1):
+                    cash_flow_key = "cash_flow_year_" + str(i)
+                    if cash_flow_key in form.cleaned_data:
+                        cash_flows.append(form.cleaned_data[cash_flow_key])
 
             # Update the data and save the project
             project = Project.objects.get(id=project_id)
@@ -241,3 +249,32 @@ def edit_project(request, project_id):
     form = Project_Form(initial=data)
 
     return render(request, "npv/edit-project.html", {"form": form, "project_id":project_id, "project_name": project.name, "cash_flows_dict": json.dumps(cash_flows_dict)})
+
+
+@login_required
+def delete_project(request, project_id):
+
+    project = Project.objects.get(id=project_id)
+    
+    evaluation = project.evaluation
+    project.delete()
+
+    projects = Project.objects.filter(evaluation=evaluation)
+
+    if not projects:
+        evaluation.delete()
+
+        return list_evaluations(request)
+    else:
+        return list_evaluation_projects(request, evaluation.id)
+    
+@login_required
+def delete_evaluation(request, evaluation_id):
+
+    evaluation = Evaluation.objects.get(id=evaluation_id)
+
+    projects = Project.objects.filter(evaluation=evaluation).delete()
+
+    evaluation.delete()
+
+    return list_evaluations(request)
