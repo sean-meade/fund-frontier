@@ -1,0 +1,393 @@
+/* Defining CSS variables for easy theme management */
+:root {
+/* Primary color shades */
+--clr-primary: #063251;
+/* Secondary colors shades */
+--clr-secondary-1: #D4AF37;
+--clr-secondary-2: #F5F5F5;
+--clr-secondary-3: #333333;
+--clr-secondary-4: #FF6B6B;
+/* White/black color shades */
+--clr-white: #fff;
+--clr-black: #222;
+/* Primary and secondary font families */
+--ff-primary: 'Arial', sans-serif;
+--ff-secondary: "Open Sans", sans-serif;
+/* Commonly used CSS properties for consistency */
+--transition: all 0.3s linear;
+--spacing: 0.25rem;
+--radius: 0.5rem;
+--light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+--max-width: 1170px;
+}
+
+/*
+=============== 
+Global Styles
+===============
+*/
+html {
+scroll-behavior: smooth;
+}
+*,
+::after,
+::before {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: var(--ff-secondary);
+background: var(--clr-secondary-3);
+color: var(--clr-black);
+line-height: 1.5;
+font-size: 0.875rem;
+}
+
+
+/* Heading and paragrahps styling */
+h1,
+h2,
+h3,
+h4 {
+letter-spacing: var(--spacing);
+text-transform: capitalize;
+line-height: 1.25;
+margin-bottom: 0.75rem;
+font-family: var(--ff-primary);
+}
+h1 {
+font-size: 3rem;
+}
+h2 {
+font-size: 2rem;
+}
+h3 {
+font-size: 1.25rem;
+}
+h4 {
+font-size: 0.875rem;
+}
+p {
+margin-bottom: 1.25rem;
+color: var(--clr-black);
+}
+
+header {
+background: var(--clr-primary);
+}
+
+ul {
+list-style-type: none;
+}
+
+a {
+text-decoration: none;
+}
+/* Navbar styling */
+nav {
+background: var(--clr-white);
+padding: 1rem 1.5rem;
+}
+.fixed-nav {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+background: var(--clr-white);
+box-shadow: var(--light-shadow);
+}
+.fixed-nav .links a {
+color: var(--clr-black);
+}
+.fixed-nav .links a:hover {
+color: var(--clr-secondary);
+}
+.fixed-nav .links-container {
+height: auto !important;
+}
+.nav-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.nav-toggle {
+width: 2rem;
+height: 2rem;
+color: var(--clr-secondary-1);
+background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+/* Custom SVG for the toggler icon */
+border-color: transparent;
+transition: var(--transition);
+cursor: pointer;
+
+}
+.nav-toggle:hover {
+color: var(--clr-secondary-1);
+}
+
+/* Links and navbar */
+.links-container {
+height: 0;
+overflow: hidden;
+transition: var(--transition);
+}
+.show-links {
+height: 200px;
+}
+.links a {
+background: var(--clr-white);
+color: var(--clr-black);
+font-size: 1.1rem;
+text-transform: capitalize;
+letter-spacing: var(--spacing);
+display: block;
+transition: var(--transition);
+font-weight: bold;
+padding: 0.75rem 0;
+}
+.links a:hover {
+color: var(--clr-black);
+}
+li {
+padding-top: 1rem;
+}
+
+
+.placeholder-color::placeholder {
+color: var(--clr-primary);
+opacity: 0.7;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 190px);
+    grid-template-rows: 80px 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-year {
+    margin: 0.1rem;
+    margin-bottom: 0.3rem;
+    border-radius: 2px solid red;
+}
+
+.btn-submit {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+/* Button Styling */
+#btn-submit {
+    color: white;
+    background: #0275d8;
+}
+#delete-another {
+    color: var(--clr-white);
+    background-color: #ff0000;
+}
+
+#add-another {
+    color: var(--clr-white);
+    background-color: #008000;
+}
+
+/* Footer Styling */
+footer.footer {
+    background: var(--clr-primary); /* Bootstrap primary color */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Main Content Styling */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto; /* Center the container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background-color: #0275d8; /* Bootstrap primary color */
+    color: rgb(234, 7, 7);
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Zebra striping for table */
+}
+
+/* NPV Calculator Form Styling */
+.form-area {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* subtle shadow for depth */
+}
+.form-area h4 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--clr-white);
+}
+
+/* Input and Button Styling */
+input[type=number], button, input[type=submit] {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 5px;
+    margin: 1px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+button.year, input[type=submit] {
+    border: none;
+    font-size: 16px;
+    cursor: pointer; /* Indicates that the element is clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+input[type=submit] {
+    background-color: #5cb85c; /* Bootstrap success color */
+}
+
+input[type=submit]:hover, button.yearr:hover {
+    background-color: #025aa5; /* Darken the button color on hover */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    footer.footer {
+        padding: 15px 0;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .form-area, .container {
+        padding: 15px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 90px);
+        grid-template-rows: 50px 50px;
+    }
+    button.year {
+        font-size: 0.6rem;
+    }
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+/* Add any additional utility classes as needed */
+
+label {
+    font-weight: bold;
+    color: var(--clr-black);
+}
+
+/* Media queries for different screen sizes */
+@media screen and (min-width: 769px) {
+    h1 {
+        font-size: 4rem;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+    h3 {
+        font-size: 1.75rem;
+    }
+    h4 {
+        font-size: 1rem;
+    }
+    body {
+        font-size: 1rem;
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
+        line-height: 1;
+    }
+
+    nav {
+        background: var(--clr-primary);
+    }
+    .nav-center {
+        width: 90vw;
+        max-width: 1170px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .nav-header {
+        padding: 0;
+    }
+    .nav-toggle {
+        display: none;
+    }
+    .links-container {
+        height: auto !important;
+    }
+    .links {
+        display: flex;
+    }
+    .links a {
+        background: transparent;
+        color: var(--clr-white);
+        font-size: 0.7rem;
+        text-transform: capitalize;
+        letter-spacing: var(--spacing);
+        display: block;
+        transition: var(--transition);
+        margin: 0 1rem;
+        font-weight: bold;
+        padding: 0;
+    }
+    .links a:hover {
+        color: var(--clr-white);
+    }
+}

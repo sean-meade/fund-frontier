@@ -1,0 +1,41 @@
+<nav id="nav">
+    <div class="nav-center">
+        <div class="nav-header">
+            <a class="" href="{% url 'base' %}">NPV Calculator</a>
+            <button class="nav-toggle fas fa-bars" aria-label="Toggle navigation menu">
+        </div>
+        <div class="links-container" id="navbarNav">
+            <ul class="links">
+                <li>
+                    <a class="scroll-link active" aria-current="page" href="{% url 'base' %}">Home</a>
+                </li>
+                <li>
+                    <a class="scroll-link" href="{% url 'about' %}">About</a>
+                </li>
+                <li>
+                    <a class="scroll-link" href="{% url 'contact' %}">Contact Us</a>
+                </li>
+                <!-- Authentication Links -->
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="scroll-link" href="{% url 'calculate-npv' %}">Calculate NPV</a>
+                </li>
+                <li>
+                    <a class="scroll-link" href="{% url 'list-evaluations' %}">List Evaluations</a>
+                </li>
+                <li>
+                    <a class="scroll-link" href="{% url 'account_logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li>
+                    <a class="srcoll-link" href="{% url 'account_login' %}">Login</a>
+                </li>
+                <li>
+                    <a class="scroll-link" href="{% url 'account_signup' %}">Sign Up</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+</nav>

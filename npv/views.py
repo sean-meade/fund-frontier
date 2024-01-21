@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Evaluation, Project, CashFlow
-from .forms import NPV_Form, contact form
+from .forms import NPV_Form, ContactForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
