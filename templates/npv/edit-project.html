@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="title">Edit Project - {{project_name}}</div>
+
+    <div class="col-md-5">
+        <div class="form-area">
+            {% comment %} TODO: Limit discount rate {% endcomment %}
+            
+                <form action="{% url 'edit_project' project_id=project_id %}" method="post">
+                <br style="clear:both">
+                <h4 style="margin-bottom: 25px; text-align: center;">Project Details</h3>
+                {% csrf_token %}
+                <div id="forms">
+                    {{ form.as_p }}
+                </div>
+                
+                <input type="submit" value="Save Changes">                
+            </form>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+{% block extra_js_footer %}
+<script>
+
+    var cash_flows = {{ cash_flows_dict | safe }};
+
+    count = Object.keys(cash_flows).length
+
+    $("[name=cash_flow_year_count]").val(count);
+
+    for (let i = 2 ; i <= count +1; i++) {
+        let element = $('<input type="number" value="'+ cash_flows[i] +'"/>');
+        element.attr('name', 'cash_flow_year_' + i);
+        $("#forms").append(element);
+
+      }
+
+</script>
+{% endblock %}

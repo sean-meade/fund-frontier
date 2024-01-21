@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="title">NPV Calculate</div>
+
+    <div class="col-md-5">
+        <div class="form-area">
+            {% comment %} TODO: Limit discount rate {% endcomment %}
+            <form action="{% url 'calculate-npv' %}" method="post">
+                <br style="clear:both">
+                <h4 style="margin-bottom: 25px; text-align: center;">Calculate NPV</h3>
+                {% csrf_token %}
+                <div id="forms">
+                    {{ form.as_p }}
+                </div>
+                <button class="year" type="button" id="add-another">add another</button>
+                <button class="year" type="button" id="delete-another">delete another</button>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        </div>
+    </div>
+    <p>NPV: € {{ npv }}</p>
+
+
+
+</div>
+
+{% endblock %}
