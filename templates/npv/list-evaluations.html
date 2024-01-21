@@ -13,6 +13,7 @@
                 <th scope="col">No. of Projects</th>
                 <th scope="col">Period</th>
                 <th scope="col">Edit/belongs to</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -25,8 +26,10 @@
                 <td>{{ evaluation.period }}</td>
                 {% if evaluation.user == user %}
                 <td><a href="{% url 'edit_evaluation' evaluation_id=evaluation.id %}">Edit</a></td>
+                <td><a href="{% url 'delete_evaluation' evaluation_id=evaluation.id %}">Delete</a></td>
                 {% else %}
                 <td>{{ evaluation.user }}</td>
+                <td></td>
                 {% endif %}
             </tr>
             {% empty %}
