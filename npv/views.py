@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 
-
 def base(request):
     context = {'some_key': 'some_value'}  # Replace with actual context data
     return render(request, 'base.html', context)
@@ -27,8 +26,6 @@ def contact(request):
     return render(request, 'contact.html', {'form': form})
 
 
-
-
 @login_required
 
 def calculate_NPV_form(request):
@@ -39,14 +36,14 @@ def calculate_NPV_form(request):
             # Create list for cash flows
             cash_flows = []
 
-
+            print("form.cleaned_data", form.cleaned_data)
             # Loop through each cash flow and add to cash flow list
 
             for i in range(1, int(form.cleaned_data["cash_flow_year_count"]) + 1):
                 cash_flows.append(form.cleaned_data["cash_flow_year_"+str(i)])
 
             # Save discount rate
-            discount_rate = form.cleaned_data["discount_rate"] / 100
+            discount_rate = float(form.cleaned_data["discount_rate"]) / 100
 
 
             # Create a new evaluation
@@ -55,7 +52,8 @@ def calculate_NPV_form(request):
                 discount_rate=discount_rate,
                 note=form.cleaned_data["note"],
                 number_of_projects=1,
-                period=len(cash_flows) - 1
+                period=len(cash_flows) - 1,
+                user = request.user
             )
             evaluation.save()
 
@@ -131,8 +129,15 @@ def calculate_NPV_form(request):
     return render(request, "npv/calculate-npv.html", {"form": form})
 
 
-
 @login_required
 def list_evaluations(request):
     evaluations = Evaluation.objects.all().order_by('-id')
     return render(request, "npv/list-evaluations.html", {"evaluations": evaluations})
+
+
+@login_required
+def list_evaluation_projects(request, evaluation_id):
+    evaluation = Evaluation.objects.get(id=evaluation_id)
+
+    projects = Project.objects.filter(evaluation=evaluation)
+    return render(request, "npv/list-projects.html", {"projects": projects, "evaluation_name": evaluation.name})
