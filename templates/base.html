@@ -140,39 +140,7 @@
     }
     });
 
-    let form_count = Number($("[name=cash_flow_year_count]").val());
-    // get extra form count so we know what index to use for the next item.
-
-    // When the add button is clicked
-    $("#add-another").click(function () {
-        // Add one to the count
-        form_count++;
-
-        // create the input element
-        let element = $('<input type="number"/>');
-
-        // Add the name so you know which value belongs to which year
-        element.attr('name', 'cash_flow_year_' + form_count);
-        // Add that field to the form
-        $("#forms").append(element);
-
-        // add the count back to the form so it can be grabbed on the next click
-        $("[name=cash_flow_year_count]").val(form_count);
     
-    })
-
-    // When the delete button is clicked
-    $("#delete-another").click(function() {
-        
-        // remove the last added input
-        $('#forms input:last').remove();
-        // reduce the count
-        form_count --;
-
-        // add the count back to the form so it can be grabbed on the next click
-        $("[name=cash_flow_year_count]").val(form_count);
-
-    })
 </script>
     {% endblock %}
 </body>

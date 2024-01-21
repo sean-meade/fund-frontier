@@ -77,8 +77,8 @@ def add_project(request, evaluation_id):
             project = Project.objects.create(
                 evaluation=evaluation,
                 name=form.cleaned_data["project_name"],
-                initial_investment=form.cleaned_data["initial_investment"],
-                period=len(cash_flows) - 1
+                initial_investment=float(form.cleaned_data["initial_investment"]),
+                period=len(cash_flows)
             )
 
             # Call the calculate_npv and calculate_payback_period method 
@@ -92,7 +92,7 @@ def add_project(request, evaluation_id):
                 CashFlow.objects.create(
                     project=project,
                     year=i,
-                    amount=cash_flow,
+                    amount=float(cash_flow),
                 )
                 
             # If the user uses the complete evaluation button
@@ -154,7 +154,6 @@ def edit_evaluation(request, evaluation_id):
                 name=form.cleaned_data["evaluation_name"],
                 discount_rate=discount_rate,
                 note=form.cleaned_data["note"],
-                period=len(cash_flows) - 1,
                 user = request.user
             )
             evaluation.save()
@@ -196,7 +195,7 @@ def edit_project(request, project_id):
             project = Project.objects.get(id=project_id)
             project.name=form.cleaned_data["project_name"]
             project.initial_investment=form.cleaned_data["initial_investment"]
-            project.period=len(cash_flows) - 1
+            project.period=len(cash_flows)
             project.calculate_npv(cash_flows)
             project.calculate_payback_period(cash_flows)
             project.save()
