@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -24,11 +25,11 @@
             <tr>
                 <td>{{ project.name }}</td>
                 <td>{{ project.evaluation.name }}</td>
-                <td>{{ project.initial_investment }}</td>
+                <td>${{ project.initial_investment }}</td>
                 <td>{{ project.period }}</td>
-                <td>{{ project.npv }}</td>
+                <td>${{ project.npv }} </td>
                 <td>{{ project.payback_period }}</td>
-                <td>{{ project.annualized_npv }}</td>
+                <td>${{ project.annualized_npv }}</td>
                 <td>{{ project.get_consider_further_display }}</td>
                 <td>{{ project.rank }}</td>
                 {% if project.evaluation.user == user %}
