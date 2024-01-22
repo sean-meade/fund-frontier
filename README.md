@@ -117,10 +117,10 @@ Welcome to Fund Frontier, a NPV Calculator designed to empower users in making i
 ## Credits and Acknowledgments
 
 #### Contributors:
-- [Sean](https://github.com/sean-meade): Displayed extraordinary dedication to the backend, developing models, views, and forms with great care and effort. Sean's commitment extended to resolving critical frontend features and buggs, ensuring robust and seamless functionality     throughout the platform.
-- [Nate](https://github.com/Redsskull): Partnered closely with Sean on the backend, effectively tackling complex problems and contributing to the resolution of frontend challenges. Nate's contributions were essential in enhancing the user experience.
-- [Bogdan](https://github.com/qburn93): As Scrum Master, Bogdan set up the kanban board/milstones/tasks, implemented all authentication processes. Implemented the 'Contact Us' page and enriched the home page features. Collaboration with Nate and Sean was vital     during high-stress periods, ensuring steady progress and team focus.
-- [Johnny](https://github.com/JohnnySonTrinh): Overhauled the original navbar, assisted in styling, and resolved last-minute frontend issues.
+- [Sean](https://github.com/sean-meade): Displayed extraordinary dedication to the backend, developing models, views, and forms with great care and effort. Sean's commitment extended to resolving critical frontend features and buggs, ensuring robust and seamless functionality throughout the platform.
+- [Nate](https://github.com/Redsskull): Nate's fantastic commitment, pulling off two all-nighters to ensure that the backend systems were robust and efficient. His tireless efforts were not limited to the backend; he also played a crucial role in addressing frontend challenges. His tremendous work ethic and dedication significantly contributed to the platform's success.
+- [Bogdan](https://github.com/qburn93): As Scrum Master, Bogdan set up the kanban board/milstones/tasks, implemented all authentication processes. Implemented the 'Contact Us' page and enriched the home page features. Collaboration with Nate and Sean was vital during high-stress periods, ensuring steady progress and team focus.
+- [Johnny](https://github.com/JohnnySonTrinh): Overhauled the original navbar, assisted in styling and designing , created company logo, and resolved last-minute frontend issues.
 - [Marko](https://github.com/markohautala): Designed the styling for all authentication pages (signin, register, signout) and contributed to the documentation content.
 - [Andreas](https://github.com/Jelenko76): Focused on documenting the project in the README.
 - [Piyankara Jayadewa](https://github.com/PJDEVEX): For the NPV project idea.
