@@ -5,11 +5,83 @@
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
 {% block content %}
+<style>
+
+    
+    .logout-form button {
+        background-color: #063251;
+        font-size: larger;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid white;
+        transition: background-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+    }
+
+    .logout-form button:hover {
+        background-color: #0a4b79;
+        color: white;
+        border: 1px solid white;
+        border-radius: 15px;
+    }
+
+    .link {
+        color: white;
+        text-decoration: underline;
+        transition: text-decoration 0.8s ease-in-out;
+    }
+
+    .link:hover {
+        text-decoration: none;
+    }
+
+    label {
+        color: white;
+    }
+
+    input#id_remember {
+        width: 17px;
+        height: 17px;
+        color: white;
+        padding: 10px;
+        border-radius: 0;
+        text-decoration: none;
+    }
+
+    #id_password_helptext {
+        color: white;
+    }
+
+    .form-group label,
+    .form-group input {
+        display: block;
+        width: 100%;
+    }
+
+    div.row-login-function {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    span a {
+        color: white;
+        font-size: smaller;
+        text-decoration: underline;
+        transition: color 0.3s ease-in-out;
+    }
+
+    span a:hover {
+        text-decoration: none;
+    }
+
+</style>
 
 <h1 class="text-center">{% trans "Sign Out" %}</h1>
 <p class="text-center">{% trans 'Are you sure you want to sign out?' %}</p>
 <div class="text-center">
-    <form method="post" action="{% url 'account_logout' %}">
+    <form class="logout-form" method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>

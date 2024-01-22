@@ -39,6 +39,8 @@ box-sizing: border-box;
 }
 
 body {
+background: url('../images/about-background.jpg')no-repeat center center fixed;
+background-size: cover;    
 font-family: var(--ff-secondary);
 background: var(--clr-secondary-3);
 color: var(--clr-black);
@@ -411,9 +413,9 @@ button.year {
     font-size: 1rem;
 }
 
-.bg-1 {
+/* .bg-1 {
     background: url(../images/about_background.jpg) center /cover no-repeat;
-}
+} */
 
 /* Responsive Styling */
 
