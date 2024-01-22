@@ -133,6 +133,7 @@ def list_evaluation_projects(request, evaluation_id):
 
 @login_required
 def edit_evaluation(request, evaluation_id):
+    evaluation = Evaluation.objects.get(id=evaluation_id)
     if request.method == "POST":
         # get the updated data for the evaluation
         form = Evaluation_Form(request.POST)
@@ -143,21 +144,18 @@ def edit_evaluation(request, evaluation_id):
              # Save discount rate
             discount_rate = float(form.cleaned_data["discount_rate"]) / 100
 
-            # Save edited info of the evaluation
-            evaluation = Evaluation.objects.create(
-                name=form.cleaned_data["evaluation_name"],
-                discount_rate=discount_rate,
-                note=form.cleaned_data["note"],
-                user = request.user
-            )
+             # Update info of the evaluation
+            evaluation.name = form.cleaned_data["evaluation_name"]
+            evaluation.discount_rate = discount_rate
+            evaluation.note = form.cleaned_data["note"]
+            evaluation.user = request.user
             evaluation.save()
+            
+            
 
         # go back to list of evaluations
         evaluations = Evaluation.objects.all().order_by('-id')
         return render(request, "npv/list-evaluations.html", {"evaluations": evaluations})
-    
-    # Get the evaluation you want to edit
-    evaluation = Evaluation.objects.get(id=evaluation_id)
 
     # grab the data
     data = {
