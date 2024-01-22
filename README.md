@@ -19,6 +19,7 @@ Welcome to Fund Frontier, a NPV Calculator designed to empower users in making i
 ![Home Page](https://i.imgur.com/PXUyavJ.png)
 
 
+<br>
 
 ### Navigation
 
@@ -48,6 +49,7 @@ Welcome to Fund Frontier, a NPV Calculator designed to empower users in making i
   - Submit the form to proceed to the "Add Project" phase, where you can input specific project details.
 
 ![Create Evaluation](https://i.imgur.com/L13ZXZm.png)
+
 <br>
 
 ### Add Project
@@ -84,6 +86,9 @@ Welcome to Fund Frontier, a NPV Calculator designed to empower users in making i
 - Upon successful registration, users are redirected to the login page, allowing them to immediately authenticate and start using their new account.
 
 ![Registration Form](https://i.imgur.com/hnCZYo8.png)
+
+<br>
+
 ![Login Form](https://i.imgur.com/EuIHfbP.png)
 
 <hr>
@@ -120,12 +125,6 @@ Welcome to Fund Frontier, a NPV Calculator designed to empower users in making i
 - [Andreas](https://github.com/Jelenko76): Focused on documenting the project in the README.
 - [Piyankara Jayadewa](https://github.com/PJDEVEX): For the NPV project idea.
 
-Special Acknowledgments:
-- **Sean** and **Nate** for their extensive work on the backend and their invaluable help with the frontend.
-- **Bogdan**, the Scrum Master, for efficiently managing the team and the authentication setup.
-- **Johnny**, for his significant contributions to the frontend's appearance and functionality.
-- **Marko**, for his aesthetic input on the authentication pages and documentation.
-- **Andreas**, for his meticulous work on the project's documentation.
 
 ![Team](https://i.imgur.com/PbckpH5.png)
 
