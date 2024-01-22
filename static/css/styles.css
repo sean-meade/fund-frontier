@@ -113,6 +113,10 @@ background: var(--clr-white);
 padding: 0 1.5rem 1rem 1.5rem;
 }
 
+/* #navbarSupportedContent {
+    padding-right: 30px;
+} */
+
 .fixed-nav {
 position: fixed;
 top: 0;
@@ -182,7 +186,7 @@ padding: 0.75rem 0;
 color: var(--clr-black);
 }
 
-li {
+.contact-li {
 padding-top: 1rem;
 }
 
@@ -283,7 +287,7 @@ tr:nth-child(even) {
 }
 
 /* Input and Button Styling */
-input[type=number], button, input[type=submit] {
+input[type=number], .site-button, input[type=submit] {
     width: 100%;
     padding: 15px;
     margin: 10px 0;
@@ -312,7 +316,7 @@ input[type=submit] {
     background-color: #5cb85c; /* Bootstrap success color */
 }
 
-input[type=submit]:hover, button.yearr:hover {
+input[type=submit]:hover, button.year:hover {
     background-color: #025aa5; /* Darken the button color on hover */
 }
 
