@@ -8,22 +8,48 @@ Welcome to Fund Frontier, a NPV Calculator designed to empower users in making i
 
 <hr>
 
-## Existing Features
-1. Project Comparison: The tool supports the evaluation of 2 or 3 projects simultaneously for effective comparison.
-2. Initial Investment: Users will enter the initial investment amount at the beginning of the project period.
-3. Annual Net Cash Floor: The tool calculates the annual net cash flow at the end of each year, providing valuable insights into project profitability.
-4. Discount Rate: Users can specify the discount rate to account for the time value of money.
-5. NPV and Payback Period: The algorithm computes the NPV of the cash flow and determines the Payback period for each investment.
-6. Project Ranking: Projects are ranked from highest to lowest NPV. If NPV is negative, the project is flagged for rejection. Users receive the NPV and Breakeven Period for informed decision-making.
+## Features
 
-7. Contact Section: Connect with the minds behind the page! Explore the contact section to reach out to the individuals who designed and developed this platform. Whether you have questions, feedback, or just want to say hello, we welcome your interaction.
+### Home Page
 
-8. User accounts: 
-- Login Function: Existing users can securely log in to access their portfolios and saved projects.
-- Signup Function: New users can easily create accounts, enabling them to personalize their experience by saving and managing portfolios of projects.
+- The **home page** is the primary entry point to the Fund Frontier website.
+- It prominently features the navigation bar, the NPV calculator interface, and a brief introduction to the tool, allowing users to start evaluating their projects immediately.
+- The layout is designed to be intuitive and user-friendly, providing immediate access to the tool's functionalities and essential information.
 
-9. Portfolio Management: Users can create personalized portfolios to save and organize their projects.
-The editing function allows users to make updates and modifications to their saved projects, ensuring portfolios remain dynamic and reflective of evolving plans.
+![Home Page](https://i.imgur.com/PXUyavJ.png)
+
+
+
+### Navigation
+
+- The **navigation bar** is a consistent element across all pages of the Fund Frontier site.
+- It is designed to be responsive and provides users with easy access to all major sections of the site including the NPV calculator, project comparison, and user account management.
+- The navigation bar updates dynamically to reflect the user's authentication status:
+  - Authenticated users can access their saved projects, manage their portfolios, and log out.
+  - Unauthenticated visitors are presented with options to log in or register.
+- On smaller screens, the navigation options are compacted into a hamburger menu to ensure the site remains navigable and user-friendly on any device.
+
+
+### Project Evaluation Features
+
+1. **Project Comparison**: Evaluate 2 or 3 projects simultaneously, allowing for comprehensive comparison and analysis.
+2. **Initial Investment Input**: Users input the initial investment amount, marking the commencement of the project's financial timeline.
+3. **Annual Net Cash Flow Calculation**: The tool calculates and presents the annual net cash flow, providing critical insights into the project's profitability over time.
+4. **Discount Rate Specification**: Users can set the discount rate, incorporating the time value of money into the project's financial analysis.
+5. **NPV and Payback Period**: The system calculates the NPV of cash flows and determines the Payback period, offering a clear financial perspective on each project.
+6. **Project Ranking**: Based on NPV values, projects are ranked and flagged accordingly, empowering users with data-driven insights for decision-making.
+
+![Evaluation List](https://i.imgur.com/OfsufCJ.png)
+
+### Register (Sign up) / Login
+
+- Fund Frontier offers a robust user account system.
+- Visitors can register for an account to save their project evaluations, manage portfolios, and personalize their experience.
+- The registration process requires a unique username and a password, with the password needing confirmation to minimize entry errors.
+- Upon successful registration, users are redirected to the login page, allowing them to immediately authenticate and start using their new account.
+
+![Registration Form](https://i.imgur.com/hnCZYo8.png)
+![Login Form](https://i.imgur.com/EuIHfbP.png)
 
 <hr>
 
@@ -48,17 +74,35 @@ The editing function allows users to make updates and modifications to their sav
 
 <hr>
 
+## Credits and Acknowledgments
+
+#### Contributors:
+- [Sean](https://github.com/sean-meade) & [Nate](https://github.com/Redsskull): Took care of the backend models, views, and forms. Addressed and resolved arising issues, ensuring the product's functionality. Also assisted in debugging challenging frontend issues.
+- [Bogdan](https://github.com/qburn93): Scrum Master, set up all authentication processes. Collaborated with Nate to delegate tasks during high-stress periods.
+- [Johnny](https://github.com/JohnnySonTrinh): Overhauled the original navbar, assisted in styling, and resolved last-minute frontend issues.
+- [Marko](https://github.com/markohautala): Designed the styling for all authentication pages (signin, register, signout) and contributed to the documentation content.
+- [Andreas](https://github.com/Jelenko76): Focused on documenting the project in the README.
+
+Special Acknowledgments:
+- **Sean** and **Nate** for their extensive work on the backend and their invaluable help with the frontend.
+- **Bogdan**, the Scrum Master, for efficiently managing the team and the authentication setup.
+- **Johnny**, for his significant contributions to the frontend's appearance and functionality.
+- **Marko**, for his aesthetic input on the authentication pages and documentation.
+- **Andreas**, for his meticulous work on the project's documentation.
+
+![Team](https://i.imgur.com/PbckpH5.png)
+
 ## Testing
 
 #### Validator Testing 
 - HTML
-  - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/)
+  - No errors were returned when passing through the official \[W3C validator\](https://validator.w3.org/)
 
 - CSS
-  - No errors were found when passing through the official [Jigsaw validator](https://jigsaw.w3.org/css-validator/)
+  - No errors were found when passing through the official \[Jigsaw validator\](https://jigsaw.w3.org/css-validator/)
 
 - Python
-  - No errors were found when passing through the [CI Python Linter](https://pep8ci.herokuapp.com/)
+  - No errors were found when passing through the \[CI Python Linter\](https://pep8ci.herokuapp.com/)
 
 #### Lighthouse testing and result
 
@@ -89,7 +133,7 @@ Our commitment to responsive design involves continuous testing and thorough ins
 This site is deployed using GitHub pages.
 To deploy the page using GitHub pages:
 - Login or signup to GitHub.
-- Go to the repository for this project: [link](https://github.com/sean-meade/fund-frontier).
+- Go to the repository for this project: \[link\](https://github.com/sean-meade/fund-frontier).
 - Click the settings button.
 - Select pages in the left hand navigation menu.
 - From the source dropdown, select main branch and click save.
@@ -103,12 +147,3 @@ With these steps, you can not only deploy the site but also have the flexibility
 
 <hr>
 
-## Credits and Acknowledgments
-#### Contributors: 
-- [Sean](https://github.com/sean-meade)
-- [Nate](https://github.com/Redsskull)
-- [Bogdan](https://github.com/qburn93)
-- [Johnny](https://github.com/JohnnySonTrinh)
-- [Marko](https://github.com/markohautala)
-- [Andreas](https://github.com/Jelenko76)
-- [PJ](https://github.com/PJDEVEX)
