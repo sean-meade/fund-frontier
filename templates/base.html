@@ -69,18 +69,16 @@
         
         <!-- Bootstrap Navbar End -->
     </header>
-    {% comment %} <div class="container">
+    <div class="container" style="position: absolute;">
         <div class="row">
-            <div >
-                {% for message in messages %}
-                <div  {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
-                    <div>{{ message | safe }}</div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {% endfor %}
-            </div>
+            {% for message in messages %}
+          <div style="background: #063251;" {{ message.tags }} class="alert alert-dismissible fade show" id="msg" role="alert">
+              <div class="text-white">{{ message | safe }}</div>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
         </div>
-    </div> {% endcomment %}
+    </div>
 
     {% block page_header %}
     {% endblock %}
@@ -109,11 +107,11 @@
     // select the elements from the DOM needed for the navigation toggle functionality.
 
 
-    {% comment %} setTimeout(function () {
+    setTimeout(function () {
         let messages = document.getElementById('msg');
         let alert = new bootstrap.Alert(messages);
         alert.close();
-    }, 1500); {% endcomment %}
+    }, 2000);
     
 
     
