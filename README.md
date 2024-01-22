@@ -112,11 +112,13 @@ Welcome to Fund Frontier, a NPV Calculator designed to empower users in making i
 ## Credits and Acknowledgments
 
 #### Contributors:
-- [Sean](https://github.com/sean-meade) & [Nate](https://github.com/Redsskull): Took care of the backend models, views, and forms. Addressed and resolved arising issues, ensuring the product's functionality. Also assisted in debugging challenging frontend issues.
-- [Bogdan](https://github.com/qburn93): Scrum Master, set up all authentication processes. Collaborated with Nate to delegate tasks during high-stress periods.
+- [Sean](https://github.com/sean-meade): Displayed extraordinary dedication to the backend, developing models, views, and forms with great care and effort. Sean's commitment extended to resolving critical frontend features and buggs, ensuring robust and seamless functionality     throughout the platform.
+- [Nate](https://github.com/Redsskull): Partnered closely with Sean on the backend, effectively tackling complex problems and contributing to the resolution of frontend challenges. Nate's contributions were essential in enhancing the user experience.
+- [Bogdan](https://github.com/qburn93): Scrum Master, set up all authentication processes. Collaborated with Nate and Sean to delegate tasks during high-stress periods.
 - [Johnny](https://github.com/JohnnySonTrinh): Overhauled the original navbar, assisted in styling, and resolved last-minute frontend issues.
 - [Marko](https://github.com/markohautala): Designed the styling for all authentication pages (signin, register, signout) and contributed to the documentation content.
 - [Andreas](https://github.com/Jelenko76): Focused on documenting the project in the README.
+- [Piyankara Jayadewa](https://github.com/PJDEVEX): For the NPV project idea.
 
 Special Acknowledgments:
 - **Sean** and **Nate** for their extensive work on the backend and their invaluable help with the frontend.
