@@ -9,11 +9,8 @@
     <!-- Add the Bootstrap CSS and JavaScript files -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/scripts/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     {% endblock %}
-
+    
     {% block meta %}
     <!-- Required meta tags -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -39,7 +36,7 @@
     {% endblock %}
 
     {% block extra_css %}
-
+    
     {% endblock %}
 
     {% block corejs %}
@@ -53,6 +50,12 @@
 
     <title>NPV Calculate {% block extra_title %}{% endblock %}</title>
 </head>
+<style>
+    body {
+        background: url('{% static "images/about-background.jpg" %}') no-repeat center center fixed;
+        background-size: cover; 
+    }
+</style>
 
 <body>
 
@@ -72,16 +75,20 @@
     
 
     <!-- Footer -->
-    <footer class="d-flex mt-3 py-5 footer">
-        
-            <p class="text-center text-white">Copyright &copy <span id="date"></span> Found Frontier. All rights reserved.</p>
-            <div class="hstack gap-3">
-                
-    </div>
-        
-
-
-    </footer>
+    
+    <footer class="text-center bg-body-tertiary fixed-bottom py-1">
+       
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+          © 2024 Copyright:
+          <a class="text-body" href="https://mdbootstrap.com/">Fund Frontier</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/scripts/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    
     {% block extra_js_footer %}
 <script>
     // select the elements from the DOM needed for the navigation toggle functionality.
