@@ -39,7 +39,42 @@ Welcome to Fund Frontier, a NPV Calculator designed to empower users in making i
 5. **NPV and Payback Period**: The system calculates the NPV of cash flows and determines the Payback period, offering a clear financial perspective on each project.
 6. **Project Ranking**: Based on NPV values, projects are ranked and flagged accordingly, empowering users with data-driven insights for decision-making.
 
-![Evaluation List](https://i.imgur.com/OfsufCJ.png)
+### Create Evaluation
+
+- **Purpose**: Begin a new project analysis by entering the financial details necessary to evaluate the investment.
+- **How to use**:
+  - Access the "Create Evaluation" section through the main navigation.
+  - Fill in the required fields, such as the name of the evaluation, discount rate, and initial investment.
+  - Submit the form to proceed to the "Add Project" phase, where you can input specific project details.
+
+![Create Evaluation](https://i.imgur.com/L13ZXZm.png)
+<br>
+
+### Add Project
+
+- **Purpose**: Add individual projects to your evaluation, detailing year-by-year cash flows and other relevant financial data.
+- **How to use**:
+  - Once an evaluation is created, select the option to "Add Project" within the evaluation.
+  - Input the cash flow details for each year and any notes for reference.
+  - Use the "Add Another Year" button to input additional years of cash flows.
+  - If needed, remove the last entry by clicking the "Delete Last Year" button.
+  - Save the project by clicking "Add Next Project" or complete your evaluation with the "Complete Evaluation" button.
+
+![Add Project](https://i.imgur.com/9mud3GF.png)
+
+<br>
+
+### Project Evaluation Features
+
+1. **Project Comparison**: Evaluate 2 or 3 projects simultaneously, allowing for comprehensive comparison and analysis.
+2. **Initial Investment Input**: Users input the initial investment amount, marking the commencement of the project's financial timeline.
+3. **Annual Net Cash Flow Calculation**: The tool calculates and presents the annual net cash flow, providing critical insights into the project's profitability over time.
+4. **Discount Rate Specification**: Users can set the discount rate, incorporating the time value of money into the project's financial analysis.
+5. **NPV and Payback Period**: The system calculates the NPV of cash flows and determines the Payback period, offering a clear financial perspective on each project.
+6. **Project Ranking**: Based on NPV values, projects are ranked and flagged accordingly, empowering users with data-driven insights for decision-making.
+![Evaluation List](https://i.imgur.com/ypLWyk2.png)
+
+<br>
 
 ### Register (Sign up) / Login
 
