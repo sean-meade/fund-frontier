@@ -54,12 +54,6 @@
 
     <title>NPV Calculate {% block extra_title %}{% endblock %}</title>
 </head>
-<style>
-    body {
-        background: url('{% static "images/about-background.jpg" %}') no-repeat center center fixed;
-        background-size: cover; 
-    }
-</style>
 
 <body>
 
@@ -69,7 +63,7 @@
         
         <!-- Bootstrap Navbar End -->
     </header>
-    <div class="container" style="background: transparent;">
+    <div class="message">
         <div class="row">
             {% for message in messages %}
           <div style="background: #063251;" {{ message.tags }} class="alert alert-dismissible fade show" id="msg" role="alert">
@@ -90,15 +84,7 @@
 
     <!-- Footer -->
     
-    <footer class="text-center bg-body-tertiary fixed-bottom py-1">
-       
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-          © 2024 Copyright:
-          <a class="text-body" href="https://mdbootstrap.com/">Fund Frontier</a>
-        </div>
-        <!-- Copyright -->
-      </footer>
-    
+    {% include 'footer.html' %}
     
     
     

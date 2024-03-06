@@ -6,4 +6,5 @@ db.sqlite3
 .gitpod.yml
 env.py
 .vscode
-
+.gitpod.yml
+env.py
