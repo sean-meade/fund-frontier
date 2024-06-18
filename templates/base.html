@@ -35,7 +35,12 @@
     {% endblock %}
 
     {% block corecss %}
-    
+    <style>
+    body {
+        background: url('{% static "images/about-background.jpg" %}') no-repeat center center fixed;
+        background-size: cover;
+    }
+    </style>
     
     {% endblock %}
 
@@ -54,12 +59,6 @@
 
     <title>NPV Calculate {% block extra_title %}{% endblock %}</title>
 </head>
-<style>
-    body {
-        background: url('{% static "images/about-background.jpg" %}') no-repeat center center fixed;
-        background-size: cover; 
-    }
-</style>
 
 <body>
 
@@ -69,16 +68,14 @@
         
         <!-- Bootstrap Navbar End -->
     </header>
-    <div class="container" style="background: transparent;">
-        <div class="row">
+    
             {% for message in messages %}
           <div style="background: #063251;" {{ message.tags }} class="alert alert-dismissible fade show" id="msg" role="alert">
               <div class="text-white">{{ message | safe }}</div>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           {% endfor %}
-        </div>
-    </div>
+ 
 
     {% block page_header %}
     {% endblock %}
@@ -90,7 +87,7 @@
 
     <!-- Footer -->
     
-    <footer class="text-center bg-body-tertiary fixed-bottom py-1">
+    <footer class="text-center bg-body-tertiary py-1 mt-3">
        
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
           © 2024 Copyright:
