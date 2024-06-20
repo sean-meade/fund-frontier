@@ -1,11 +1,22 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block content %}
+{% block extra_css %}
+<style>
+  {% comment %} TODO nicer sizing for projects list {% endcomment %}
+@media (min-width: 576px) {
+  .container, .container-sm {
+      max-width: none !important;
+  }
+}
+</style>
+{% endblock %}
 
-<div class="container mt-4">
-    <h1 class="text-white">Project for Evaluation: {{evaluation_name}}</h1>
-    <table class="table table-striped">
+{% block content %}
+<h1 class="calculator-headings">Project for Evaluation: {{evaluation_name}}</h1>
+
+<div class="table-container">
+        <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Name</th>
@@ -34,7 +45,7 @@
                 {% endif %}
                 <td>{{ project.rank }}</td>
                 {% if project.evaluation.user == user %}
-                <td><a href="{% url 'edit_project' project_id=project.id %}">Edit</a></td>
+                <td><a href="{% url 'edit_project' project_id=project.id  %}">Edit</a></td>
                 <td><button type="button" class="btn btn-primary delete_project" data-bs-toggle="modal" data-id="{{ project.id }}" data-bs-target="#exampleModal">
                     Delete
                   </button></td>
@@ -75,7 +86,8 @@
 
     $(document).on("click", ".delete_project", function () {
         var projectID = $(this).data('id');
-        document.getElementById("delete-this-proj").setAttribute("href", "/delete_project/" + projectID + "/");
+        console.log(projectID)
+        document.getElementById("delete-this-proj").setAttribute("href", "/delete_project/" + {{evaluation_id}} + "/" + projectID + "/");
     });
     
 </script>
