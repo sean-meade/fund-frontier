@@ -1,20 +1,31 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<style>
+  {% comment %} TODO nicer sizing for eval list {% endcomment %}
+@media (min-width: 576px) {
+  .container, .container-sm {
+      max-width: none !important;
+  }
+}
+</style>
+{% endblock %}
+
 {% block content %}
 
 
-<div class="container mt-4">
-    <h1 class="text-white">Evaluation List</h1>
+    <h1 class="calculator-headings">Evaluation List</h1>
+    <div class="table-container">
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Evaluation Name</th>
                 <th scope="col">Discount Rate</th>
                 <th scope="col">Note</th>
-                <th scope="col">No. of Projects</th>
+                <th scope="col"># of Projects</th>
                 <th scope="col">Period</th>
-                <th scope="col">Edit/belongs to</th>
+                <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
             </tr>
         </thead>

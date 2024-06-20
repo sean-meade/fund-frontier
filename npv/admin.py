@@ -1,9 +1,13 @@
 from django.contrib import admin
-from .models import Evaluation, Project
+from .models import Evaluation, Project, CashFlow
 
 @admin.register(Evaluation)
 class EvaluationAdmin(admin.ModelAdmin):
     list_display = ('name' , 'discount_rate')
+
+@admin.register(CashFlow)
+class CashFlowAdmin(admin.ModelAdmin):
+    list_display = ('project' , 'year', 'amount')
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):

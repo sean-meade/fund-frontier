@@ -1,38 +1,28 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block content %}
 
-<div class="container">
-    <div class="title">Add Project</div>
-
-    <div class="col-md-5">
-        <div class="form-area">
-            {% comment %} TODO: Limit discount rate {% endcomment %}
+<h3 class="calculator-headings">Add Project</h3>
+<div class="site-container calculator-container col-md-6">
+    {% comment %} TODO: Limit discount rate {% endcomment %}
             
-            <form action="{% url 'add_project' evaluation_id=evaluation_id %}" method="post">
-                
-                <br style="clear:both">
-                <h4 style="margin-bottom: 25px; text-align: center;">Project Details</h3>
-                {% csrf_token %}
-                <div id="forms">
-                    {{ form.as_p }}
-                </div>
-                <button class="year site-button" type="button" id="add-another">add another</button>
-                <button class="year site-button" type="button" id="delete-another">delete another</button>
-                <input type="submit" name="add_next_project" value="Add Next Project">
-                <input type="submit" name="complete_eval" value="Complete Evaluation">
-            </form>
+    <form class="site-form" id="addProject" action="{% url 'add_project' evaluation_id=evaluation_id %}" method="post">
+        <h4>Project Details</h3>
+        {% csrf_token %}
+        <div id="forms">
+            {{ form.as_p }}
         </div>
-        </div>
-    </div>
-
-
-
+        <button class="year" type="button" id="add-another">Add Year</button>
+        <button class="year" type="button" id="delete-another">Delete Year</button>
+        <button type="submit" name="add_next_project">Add Next Project</button>
+        <button type="submit" id="completeEval" name="complete_eval">Complete Evaluation</button>
+    </form>
+   
 </div>
 {% block extra_js_footer %}
 <script>
+    // TODO: This code is repeated in edit project. Needs to put into file
     let form_count = Number($("[name=cash_flow_year_count]").val());
     // get extra form count so we know what index to use for the next item.
 
@@ -55,14 +45,42 @@
     })
     // When the delete button is clicked
     $("#delete-another").click(function() {
+        if (form_count != 1) {
         // remove the last added input
         $('#forms input:last').remove();
         $("#forms label:last").remove();
         // reduce the count
         form_count --;
         // add the count back to the form so it can be grabbed on the next click
-        $("[name=cash_flow_year_count]").val(form_count);
+        $("[name=cash_flow_year_count]").val(form_count);}
     })
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('addProject');
+        const submitBtn = document.getElementById('completeEval');
+
+        // Handle form submission
+        submitBtn.addEventListener('click', function (event) {
+            const name = document.getElementById('id_project_name').value;
+            const initialInvestment = document.getElementById('id_initial_investment').value;
+
+            if (!name || !initialInvestment) {
+                // Prevent the default form submission
+                event.preventDefault();
+
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = submitBtn.name;
+                hiddenInput.value = submitBtn.value;
+                form.appendChild(hiddenInput);
+
+                console.log('Form ready for submit');
+                form.submit();
+            }
+            
+        });
+    });
+
 </script>
 {% endblock %}
 {% endblock %}

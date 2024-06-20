@@ -3,40 +3,31 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="title">Edit Project - {{project_name}}</div>
+<h3 class="calculator-headings">Edit {{project_name}}</h3>
 
-    <div class="col-md-5">
-        <div class="form-area">
-            {% comment %} TODO: Limit discount rate {% endcomment %}
-            
-                <form action="{% url 'edit_project' project_id=project_id %}" method="post">
-                <br style="clear:both">
-                <h4 style="margin-bottom: 25px; text-align: center;">Project Details</h3>
-                {% csrf_token %}
-                <div id="forms">
-                    {{ form.as_p }}
-                </div>
-                <button class="year site-button" type="button" id="add-another">add another</button>
-                <button class="year site-button" type="button" id="delete-another">delete another</button>
-                <input type="submit" value="Save Changes">                
-            </form>
-        </div>
-        </div>
-    </div>
-
+<div class="site-container calculator-container col-md-6">
+  {% comment %} TODO: Limit discount rate {% endcomment %}
+  
+  <form class="site-form" action="{% url 'edit_project' project_id=project_id %}" method="post">
+      <h4 >Project Details</h3>
+      {% csrf_token %}
+      <div id="forms">
+          {{ form.as_p }}
+      </div>
+      <button class="year" type="button" id="add-another">Add Year</button>
+      <button class="year" type="button" id="delete-another">Delete Year</button>
+      <button type="submit" name="save_changes">Save Project</button>
+  </form>
 </div>
 
-{% endblock %}
 {% block extra_js_footer %}
 <script>
-
-
+document.addEventListener('onload', function () {
     // Collect the dict data sent from edit_project view
     var cash_flows = {{ cash_flows_dict | safe }};
 
     // number of cash flows
-    count = Object.keys(cash_flows).length
+    count = Object.keys(cash_flows).length - 1
 
     // Update the cash_flow_year_count on the form (to keep track when adding and removing)
     $("[name=cash_flow_year_count]").val(count);
@@ -44,47 +35,57 @@
     // For every cash flow 
     for (let i = 2 ; i <= count +1; i++) {
         //create an input element and give the cash flow for that year
-        let element = $('<input type="number" value="'+ cash_flows[i] +'"/>');
-        // update the name so the view can use it
-        element.attr('name', 'cash_flow_year_' + i);
-        // add that cash flow with it's populated value to the form
+        let element1 = $('<label>Cash flow year ' + count + ' ($)</label>');
+        $("#forms").append(element1);
+        // create the input element
+        let element = $('<input type="number"/>');
+        // Add the name so you know which value belongs to which year
+        element.attr('name', 'cash_flow_year_' + form_count);
+        element.attr('label', 'Cash flow year ' + form_count + ' ($)');
+        // Add that field to the form
         $("#forms").append(element);
+    }})
 
-    }
-
+    // TODO: This code is repeated in edit project. Needs to put into file
     let form_count = Number($("[name=cash_flow_year_count]").val());
-      // get extra form count so we know what index to use for the next item.
+    // get extra form count so we know what index to use for the next item.
 
       // When the add button is clicked
     $("#add-another").click(function () {
-          // Add one to the count
+        // Add one to the count
         form_count++;
-
-          // create the input element
+        // create the input element
+        let element1 = $('<label for="id_cash_flow_year_' + form_count+'">Cash flow year ' + form_count + ' ($)</label>');
+        $("#forms").append(element1);
+        // create the input element
         let element = $('<input type="number"/>');
-
-          // Add the name so you know which value belongs to which year
+        // Add the name so you know which value belongs to which year
         element.attr('name', 'cash_flow_year_' + form_count);
-          // Add that field to the form
+        element.attr('id', 'id_cash_flow_year_' + form_count);
+        // Add that field to the form
         $("#forms").append(element);
-
-          // add the count back to the form so it can be grabbed on the next click
+        // add the count back to the form so it can be grabbed on the next click
         $("[name=cash_flow_year_count]").val(form_count);
-
     })
 
       // When the delete button is clicked
     $("#delete-another").click(function() {
-
-          // remove the last added input
-        $('#forms input:last').remove();
-          // reduce the count
+      if (form_count != 1) {
+        // remove the last added input
+        lastInput = document.getElementById('id_cash_flow_year_' + form_count)
+        console.log(lastInput)
+        labelFor = 'id_cash_flow_year_' + form_count
+        lastLabel = document.querySelector(`label[for="${labelFor}"]`);
+        console.log(lastLabel)
+        lastInput.remove();
+        lastLabel.remove();
+        // reduce the count
         form_count --;
-
-          // add the count back to the form so it can be grabbed on the next click
-        $("[name=cash_flow_year_count]").val(form_count);
-
+        // add the count back to the form so it can be grabbed on the next click
+        $("[name=cash_flow_year_count]").val(form_count);}
     })
 
+    
 </script>
+{% endblock %}
 {% endblock %}

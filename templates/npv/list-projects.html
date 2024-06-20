@@ -1,21 +1,30 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block content %}
+{% block extra_css %}
+<style>
+  {% comment %} TODO nicer sizing for projects list {% endcomment %}
+@media (min-width: 576px) {
+  .container, .container-sm {
+      max-width: none !important;
+  }
+}
+</style>
+{% endblock %}
 
-<div class="container mt-4">
-    <h1 class="text-white">{{evaluation_name}}</h1>
-    <table class="table table-striped">
+{% block content %}
+<h1 class="calculator-headings">Project for Evaluation: {{evaluation_name}}</h1>
+
+<div class="table-container">
+        <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">Project Name</th>
-                <th scope="col">Evaluation Name</th>
-                <th scope="col">Initial Investment</th>
+                <th scope="col">Name</th>
+                <th scope="col">Init. Invest. $</th>
                 <th scope="col">Period</th>
-                <th scope="col">NPV</th>
-                <th scope="col">Payback Period</th>
-                <th scope="col">Annualized NPV</th>
-                <th scope="col">Consider Further</th>
+                <th scope="col">NPV $</th>
+                <th scope="col">Ann. NPV $</th>
+                <th scope="col">Viable</th>
                 <th scope="col">Rank</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
@@ -25,16 +34,18 @@
             {% for project in projects %}
             <tr>
                 <td>{{ project.name }}</td>
-                <td>{{ project.evaluation.name }}</td>
-                <td>${{ project.initial_investment }}</td>
+                <td>{{ project.initial_investment }}</td>
                 <td>{{ project.period }}</td>
-                <td>${{ project.npv }} </td>
-                <td>{{ project.payback_period }}</td>
-                <td>${{ project.annualized_npv }}</td>
-                <td>{{ project.get_consider_further_display }}</td>
+                <td>{{ project.npv }} </td>
+                <td>{{ project.annualized_npv }}</td>
+                {% if project.get_consider_further_display == "Rejected" %}
+                  <td><span class="cross">&#10006</span></td>
+                {% else %}
+                  <td><span class="check">&#10004</span></td>
+                {% endif %}
                 <td>{{ project.rank }}</td>
                 {% if project.evaluation.user == user %}
-                <td><a href="{% url 'edit_project' project_id=project.id %}">Edit</a></td>
+                <td><a href="{% url 'edit_project' project_id=project.id  %}">Edit</a></td>
                 <td><button type="button" class="btn btn-primary delete_project" data-bs-toggle="modal" data-id="{{ project.id }}" data-bs-target="#exampleModal">
                     Delete
                   </button></td>
@@ -75,7 +86,8 @@
 
     $(document).on("click", ".delete_project", function () {
         var projectID = $(this).data('id');
-        document.getElementById("delete-this-proj").setAttribute("href", "/delete_project/" + projectID + "/");
+        console.log(projectID)
+        document.getElementById("delete-this-proj").setAttribute("href", "/delete_project/" + {{evaluation_id}} + "/" + projectID + "/");
     });
     
 </script>
