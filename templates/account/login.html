@@ -7,117 +7,33 @@
 
 {% block content %}
 
-<style>
-
-    .login-container {
-        color: white;
-        padding: 20px;
-        font-size: larger;
-    }
-
-    .login-title {
-        text-align: center;
-        font-size: 60px;
-    }
-
-    .login-description {
-        color: white;
-        font-size: 20px;
-        line-height: 1.5;
-    }
-
-    .login-form button {
-        background-color: #063251;
-        font-size: larger;
-        color: white;
-        font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 10px;
-        border: 1px solid white;
-        transition: background-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-    }
-
-    .login-form button:hover {
-        background-color: #0a4b79;
-        color: white;
-        border: 1px solid white;
-        border-radius: 15px;
-    }
-
-    .link {
-        color: white;
-        text-decoration: underline;
-        transition: text-decoration 0.8s ease-in-out;
-    }
-
-    .link:hover {
-        text-decoration: none;
-    }
-
-    label {
-        color: white;
-    }
-
-    input#id_remember {
-        width: 17px;
-        height: 17px;
-        color: white;
-        padding: 10px;
-        border-radius: 0;
-        text-decoration: none;
-    }
-
-    #id_password_helptext {
-        color: white;
-    }
-
-    .form-group label,
-    .form-group input {
-        display: block;
-        width: 100%;
-    }
-
-    div.row-login-function {
-        display: flex;
-        justify-content: flex-start;
-        width: 100%;
-    }
-
-    span a {
-        color: white;
-        font-size: smaller;
-        text-decoration: underline;
-        transition: color 0.3s ease-in-out;
-    }
-
-    span a:hover {
-        text-decoration: none;
-    }
-
-</style>
-
-
-<div class="container login-container">
-    <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
-            <h3 class="login-title">{% trans "Sign In" %}</h3>
-
-            <p class="login-description">{% blocktrans %}Welcome to Fund Frontier NVP Calculator | If
-                you
-                have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a>
-                first.{% endblocktrans %}</p>
-        </div>
+<div class="site-container row">
+    <div class="col-md-6 account-image-container">
+            <a href="#">
+                <img src="\static\images\logo.png" alt="Fund Frontier" class="img-fluid">
+            </a>
     </div>
 
-    <div class="row row-login-function">
-        <div class="col-md-8 mt-3 offset-md-2">
-            <form class="login-form" method="POST" action="{% url 'account_login' %}">
+    <div class="col-md-6">
+        <div>
+            <h1>{% trans "Sign In" %}</h1>
+
+            <p>
+            {% blocktrans %}
+                Welcome to Fund Frontier NVP Calculator. If you have not created an account yet, then 
+                <a href="{{ signup_url }}">sign up</a> first.
+            {% endblocktrans %}
+            </p>
+        </div>
+
+        <div>
+            <form class="site-form" method="POST" action="{% url 'account_login' %}">
                 {% csrf_token %}
                 <div class="form-group">{{ form.as_p }}</div>
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
-                <button class="btn btn-signup right site-button" type="submit">{% trans "Sign In" %}</button>
+                <button type="submit">{% trans "Sign In" %}</button>
             </form>
         </div>
     </div>

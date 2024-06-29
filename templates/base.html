@@ -1,122 +1,111 @@
 {% load static %}
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-
+  <head>
     {% block head %}
     <!-- Add the Bootstrap CSS and JavaScript files -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     {% endblock %}
     
     {% block meta %}
     <!-- Required meta tags -->
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     {% comment %} TODO: Add these {% endcomment %}
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    
-    {% endblock %}
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 
+    {% endblock %}
+    
     {% block extra_meta %}
-
+    
     {% endblock %}
-
+    
     {% block favicon %}
-
+    
     {% endblock %}
-
+    
     {% block corecss %}
-    
-    
-    {% endblock %}
+    <style>
+      body {
+        background: url('{% static "images/about-background.jpg" %}') no-repeat
+          center center fixed;
+        background-size: cover;
+      }
+    </style>
 
+    {% endblock %}
+    
     {% block extra_css %}
     
     {% endblock %}
-
+    
     {% block corejs %}
-
-    {% endblock %}
-
+    
+    {% endblock %} 
+    
     {% block extra_js %}
-
-
+    
     {% endblock %}
 
     <title>NPV Calculate {% block extra_title %}{% endblock %}</title>
-</head>
-<style>
-    body {
-        background: url('{% static "images/about-background.jpg" %}') no-repeat center center fixed;
-        background-size: cover; 
-    }
-</style>
+  </head>
 
-<body>
-
+  <body>
     <header>
-        {% include 'navbar.html' %}
-        
-        
-        <!-- Bootstrap Navbar End -->
+      {% include 'navbar.html' %}
+
+      <!-- Bootstrap Navbar End -->
     </header>
-    <div class="container" style="background: transparent;">
-        <div class="row">
-            {% for message in messages %}
-          <div style="background: #063251;" {{ message.tags }} class="alert alert-dismissible fade show" id="msg" role="alert">
-              <div class="text-white">{{ message | safe }}</div>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-          {% endfor %}
-        </div>
+
+    {% for message in messages %}
+    <div
+      style="background: #063251"
+      {{
+      message.tags
+      }}
+      class="alert alert-dismissible fade show"
+      id="msg"
+      role="alert"
+    >
+      <div class="text-white">{{ message | safe }}</div>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endfor %}
+
+    <div class="container">
+    {% block content %}
+    
+    {% endblock %}
     </div>
 
-    {% block page_header %}
-    {% endblock %}
-
-    {% block content %}
-    {% endblock %}
-
-    
-
     <!-- Footer -->
-    
-    <footer class="text-center bg-body-tertiary fixed-bottom py-1">
-       
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-          © 2024 Copyright:
-          <a class="text-body" href="https://mdbootstrap.com/">Fund Frontier</a>
-        </div>
-        <!-- Copyright -->
-      </footer>
-    
-    
-    
-    
-    {% block extra_js_footer %}
-<script>
-    // select the elements from the DOM needed for the navigation toggle functionality.
-
-
-    setTimeout(function () {
-        let messages = document.getElementById('msg');
-        let alert = new bootstrap.Alert(messages);
-        alert.close();
-    }, 2000);
-    
-
-    
-</script>
-    {% endblock %}
-</body>
-
+    <footer>
+    {% include 'footer.html' %}
+    </footer>
+    <script src="{% static 'js/footer-date.js' %}"></script>
+    <script src="{% static 'js/message.js' %}"></script>
+  </body>
 </html>
