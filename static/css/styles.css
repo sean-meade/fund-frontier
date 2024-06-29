@@ -1,0 +1,377 @@
+/* Defining CSS variables for easy theme management */
+:root {
+    /* Primary color shades */
+    --clr-primary: #063251;
+    /* Secondary colors shades */
+    --clr-secondary-1: #D4AF37;
+    --clr-secondary-2: #006205;
+    --clr-secondary-3: #333333;
+    --clr-secondary-4: #FF6B6B;
+    /* White/black color shades */
+    --clr-white: #fff;
+    --clr-black: #222;
+    /* Primary and secondary font families */
+    --ff-primary: 'Arial', sans-serif;
+    --ff-secondary: "Open Sans", sans-serif;
+    /* Commonly used CSS properties for consistency */
+    --transition: all 0.3s linear;
+    --spacing: 0.1rem;
+    --radius: 0.5rem;
+    --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --max-width: 1170px;
+}
+
+/*
+=============== 
+Global Styles
+===============
+*/
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--ff-secondary);
+    background: var(--clr-secondary-3);
+    color: var(--clr-black);
+}
+
+.text-primary {
+    color: var(--clr-white);
+    font-family: var(--ff-primary);
+}
+
+.text-secondary {
+    color: var(--clr-secondary-1);
+    font-family: var(--ff-primary);
+}
+
+/* Navbar styling */
+nav {
+    background: var(--clr-white);
+    padding: 0 1.5rem 1rem 1.5rem;
+}
+
+.nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header {
+    background: var(--clr-white);
+}
+
+.navbar-nav {
+    list-style-type: none;
+}
+
+.nav-link {
+    text-decoration: none;
+}
+
+.logo {
+    color: var(--clr-white);
+    height: 100px;
+}
+
+/* About section */
+
+.about-page {
+    display: grid;
+    text-align: center;
+    justify-content: center;
+}
+
+.intro-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.animated {
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out; /* Smoother transition for sliding in */
+}
+
+.slideInFromRight {
+    animation-name: slideInFromRight;
+}
+
+.slideInFromLeft {
+    animation-name: slideInFromLeft;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.feature-section {
+    max-width: 65%; /* Maximum width of the container to 65% of the parent element */
+    margin: auto; /* Center the container on the page */
+    font-family:'cursive';
+}
+
+.feature-box {
+    background: var(--clr-white);
+    color: #000;
+    border: 2px solid var(--clr-secondary-1);
+    border-radius: 4px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease;
+}
+
+.feature-box:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    transform: scale(1.01);
+}
+
+/* Contact Page */
+
+.team-area {
+    min-width: 70%;
+    background-color: #fff;
+    text-align: center;
+    color: #063251;
+    margin: auto;
+    margin-top: 3rem;
+    padding: 3rem 0;
+}
+
+.team-area h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+
+.team-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+}
+
+.box {
+    width: 250px;
+    margin: 20px;
+    padding: 30px 10px;
+    background: #cbc8c8;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 10px 10px 15px #c7c4c4, -10px -10px 15px #fff;
+    transition: transform 0.4s ease-in-out;
+}
+
+.box img {
+    width: 104px;
+    height: 104px; /* Set a fixed height */
+    border-radius: 50%; /* Make image circular */
+    margin: 0 auto; /* Center the image horizontally */
+    display: block; /* Required to enable margin: 0 auto to work */
+    border: 2px solid #063251;
+    backface-visibility: hidden;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+
+.box h2 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.box i {
+    color: #063251;
+}
+
+/* Account pasges (i.e. Sign up, Sign in, Sign out */
+
+.site-container {
+    margin: 3rem auto;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    background: #fff;
+    text-align: center;
+}
+
+.account-image-container {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.site-form {
+    font-weight: bold;
+}
+
+.site-form input:not([type=checkbox]) {
+    width: 100%;
+    padding: 5px;
+    margin: 1px 0;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.site-form label,
+.site-form input[type=checkbox] {
+    display: flex;
+    text-align: left;
+}
+
+.site-form button {
+    width: 100%;
+    background-color: #063251;
+    font-size: larger;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.site-form button:hover {
+    background: #025aa5;
+}
+
+/* Sign Out Page */
+
+#sign-out {
+    max-width: 70%;
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* NPV Calculator Form Styling */
+
+.calculator-headings {
+    color: #fff;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.calculator-container {
+    margin-top: 1.5rem;
+}
+
+.calculator-container button {
+    background-color: #5cb85c;
+}
+
+/* Remove up and down arrows in number field */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#delete-another,
+#add-another {
+    width: 40%;
+    font-size: small;
+    font-weight: normal;
+    padding: 5px;
+}
+
+#delete-another {
+    background-color: #ff0000;
+}
+
+#add-another {
+    background-color: #008000;
+}
+
+input.percentage::after {
+    content: '%';
+}
+
+input.currency::before {
+    content: '$';
+}
+
+/* Table Styling for evaluations */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background-color: #0275d8;
+    color: rgb(234, 7, 7);
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.cross {
+    color: #ff0000;
+}
+
+.check {
+    color: #00ff00;
+}
+
+/* Footer Styling */    
+
+footer {
+    background-color: #fff;
+    text-align: center;
+    height: 5rem;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer div {
+    height: 2.5rem;
+}
+
+footer a, footer a i {
+    text-decoration: none;
+    color: #000;
+    vertical-align: middle;
+}

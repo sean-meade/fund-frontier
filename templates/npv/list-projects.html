@@ -1,39 +1,45 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
 <div class="container mt-4">
-    <h1>{{evaluation_name}}</h1>
+    <h1 class="text-white">Project for Evaluation: {{evaluation_name}}</h1>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">Project Name</th>
-                <th scope="col">Evaluation Name</th>
-                <th scope="col">Initial Investment</th>
+                <th scope="col">Name</th>
+                <th scope="col">Init. Invest. $</th>
                 <th scope="col">Period</th>
-                <th scope="col">NPV</th>
-                <th scope="col">Payback Period</th>
-                <th scope="col">Annualized NPV</th>
-                <th scope="col">Consider Further</th>
+                <th scope="col">NPV $</th>
+                <th scope="col">Ann. NPV $</th>
+                <th scope="col">Viable</th>
                 <th scope="col">Rank</th>
                 <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
             {% for project in projects %}
             <tr>
                 <td>{{ project.name }}</td>
-                <td>{{ project.evaluation.name }}</td>
                 <td>{{ project.initial_investment }}</td>
                 <td>{{ project.period }}</td>
-                <td>{{ project.npv }}</td>
-                <td>{{ project.payback_period }}</td>
+                <td>{{ project.npv }} </td>
                 <td>{{ project.annualized_npv }}</td>
-                <td>{{ project.get_consider_further_display }}</td>
+                {% if project.get_consider_further_display == "Rejected" %}
+                  <td><span class="cross">&#10006</span></td>
+                {% else %}
+                  <td><span class="check">&#10004</span></td>
+                {% endif %}
                 <td>{{ project.rank }}</td>
                 {% if project.evaluation.user == user %}
                 <td><a href="{% url 'edit_project' project_id=project.id %}">Edit</a></td>
+                <td><button type="button" class="btn btn-primary delete_project" data-bs-toggle="modal" data-id="{{ project.id }}" data-bs-target="#exampleModal">
+                    Delete
+                  </button></td>
                 {% else %}
+                <td></td>
                 <td></td>
                 {% endif %}
             </tr>
@@ -44,6 +50,33 @@
             {% endfor %}
         </tbody>
     </table>
+    <a href="{% url 'add_project' evaluation_id=projects.0.evaluation.id %}" class="btn btn-primary">Add Project</a>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this Project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-footer">
+            <a href="" id="delete-this-proj" class="btn btn-primary">Delete</a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    $(document).on("click", ".delete_project", function () {
+        var projectID = $(this).data('id');
+        document.getElementById("delete-this-proj").setAttribute("href", "/delete_project/" + projectID + "/");
+    });
+    
+</script>
 {% endblock %}

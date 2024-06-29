@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extra_title %}Contact Us | Fund Frontier{% endblock %}
+{% block content %}
+    <div class="team-area">
+            <h1>Meet the team</h1>
+        <div class="team-box">
+            <div class="box">
+                <img src="{% static 'images/nate.png' %}" alt="team member">
+                <h2>Nate</h2>
+                <p>Backend</p>
+                <p>
+                    <a href="https://www.linkedin.com/in/redsskull/" target="_blank">
+                        <i class="fa fa-linkedin fa-2x"></i>
+                    </a>
+                </p>
+            </div>
+            <div class="box">
+                <img src="{% static 'images/sean.png' %}" alt="team member">
+                <h2>Sean</h2>
+                <p>Backend</p>
+                <p>
+                    <a href="https://www.linkedin.com/in/seanmeadedev/" target="_blank">
+                        <i class="fa fa-linkedin fa-2x"></i>
+                    </a>
+                </p>
+            </div>
+            <div class="box">
+                <img src="{% static 'images/bogdan.png' %}" alt="team member">
+                <h2>Bogdan</h2>
+                <p>Scrum Master</p>
+                <p>
+                    <a href="https://www.linkedin.com/in/bogdan-gugu-83ba4b11a/" target="_blank">
+                        <i class="fa fa-linkedin fa-2x"></i>
+                    </a>
+                </p>
+            </div>
+            <div class="box">
+                <img src="{% static 'images/marko.png' %}" alt="team member">
+                <h2>Marko</h2>
+                <p>Frontend:Authentication Design</p>
+                <p>
+                    <a href="https://www.linkedin.com/in/markohautala/" target="_blank">
+                        <i class="fa fa-linkedin fa-2x"></i>
+                    </a>
+                </p>
+            </div>
+            <div class="box">
+                <img src="{% static 'images/johnny.png' %}" alt="team member">
+                <h2>Johnny</h2>
+                <p>Frontend:Navigation Design</p>
+                <p>
+                    <a href="/" target="_blank">
+                        <i class="fa fa-linkedin fa-2x"></i>
+                    </a>
+                </p>
+            </div>
+            <div class="box">
+                <img src="{% static 'images/andreas.png' %}" alt="team member">
+                <h2>Andreas</h2>
+                <p>Documentation</p>
+                <p>
+                    <a href="https://www.linkedin.com/in/andreas-jelenko-03b061172/" target="_blank">
+                        <i class="fa fa-linkedin fa-2x"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+<!-- Specific JavaScript for the Contact page can be placed here -->
+<script src="https://kit.fontawesome.com/27cbf33ba8.js" crossorigin="anonymous"></script>
+{% endblock %}

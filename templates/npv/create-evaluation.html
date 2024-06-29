@@ -1,28 +1,21 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-
-<div class="container">
-    <div class="title">Create Evaluation</div>
-
-    <div class="col-md-5">
-        <div class="form-area">
-            {% comment %} TODO: Limit discount rate {% endcomment %}
+<h3 class="calculator-headings">Create Evaluation</h3>
+<div class="site-container calculator-container col-md-6">
+    
+        {% comment %} TODO: Limit discount rate {% endcomment %}
+        
+        <form class="site-form" action="{% url 'create_evaluation' %}" method="post">
+            <h4>Evaluation Details</h3>
+            {% csrf_token %}
+            <div id="forms">
+                {{ form.as_p }}
+            </div>
             
-                <form action="{% url 'create_evaluation' %}" method="post">
-                <br style="clear:both">
-                <h4 style="margin-bottom: 25px; text-align: center;">Evaluation Details</h3>
-                {% csrf_token %}
-                <div id="forms">
-                    {{ form.as_p }}
-                </div>
-                
-                <input type="submit" value="Add Projects">                
-            </form>
-        </div>
-        </div>
-    </div>
-
+            <button type="submit">Create Evaluation</button>
+        </form>
 </div>
 
 {% endblock %}
