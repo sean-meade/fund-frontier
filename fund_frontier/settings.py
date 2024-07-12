@@ -200,6 +200,12 @@ else:
     STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
+
+if HOSTED_SITE:
+    SECRET_KEY = os.getenv('SECRET_KEY')  # Use environment variable in production
+else:
+    SECRET_KEY = 'testsecretkey'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

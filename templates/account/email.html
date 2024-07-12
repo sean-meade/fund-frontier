@@ -34,7 +34,7 @@
         <div class="buttonHolder">
             <button class="secondaryAction" type="submit" name="action_primary">{% trans 'Make Primary' %}</button>
             <button class="secondaryAction" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button>
-            <button class="primaryAction" type="submit" name="action_remove">{% trans 'Remove' %}</button>
+            <button name="action_remove" data-message="{% trans 'Do you really want to remove the selected e-mail address?' %}">Remove</button>
         </div>
 
     </fieldset>
