@@ -14,19 +14,22 @@ pipeline {
             }
         }
 
+    stages {
         stage('Build Docker Image') {
             steps {
                 script {
-                    bat 'docker build -t $DOCKER_IMAGE .'
+                    bat 'runas /user:Administrator "docker build -t $DOCKER_IMAGE:$DOCKER_TAG ."'
                 }
             }
         }
+    }
+
 
         stage('Run Tests') {
             steps {
                 script {
                     bat 'docker-compose -f docker-compose.yml up -d db'
-                    bat 'docker run --rm $DOCKER_IMAGE pytest'
+                    bat 'docker run --rm $DOCKER_IMAGE:$DOCKER_TAG pytest'
                 }
             }
         }
