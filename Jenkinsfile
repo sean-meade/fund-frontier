@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "my-django-app"
-        DOCKER_TAG = "latest"
+        DOCKER_TAG = "my-django-app"
         REGISTRY = "docker.io/bannerroar"
     }
 
@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    bat 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
+                    bat 'docker build -t my-django-app:my-django-app .'
                 }
             }
         }
