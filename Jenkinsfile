@@ -35,14 +35,12 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    // Log in to Docker Hub securely
-                    bat 'echo %DOCKERHUB_PASSWORD% | docker login -u %DOCKERHUB_USERNAME% --password-stdin'
-                    
-                    // Tag the image with the registry name
-                    bat 'docker tag %DOCKER_IMAGE%:%DOCKER_TAG% %REGISTRY%/%DOCKER_IMAGE%:%DOCKER_TAG%'
-                    
-                    // Push the image to Docker Hub
-                    bat 'docker push %REGISTRY%/%DOCKER_IMAGE%:%DOCKER_TAG%'
+                    // Using Jenkins credentials securely for Docker login
+                    withCredentials([usernamePassword(credentialsId: 'jenkins-docker', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                        bat 'echo %DOCKERHUB_PASSWORD% | docker login -u %DOCKERHUB_USERNAME% --password-stdin'
+                        bat 'docker tag %DOCKER_IMAGE%:%DOCKER_TAG% %REGISTRY%/%DOCKER_IMAGE%:%DOCKER_TAG%'
+                        bat 'docker push %REGISTRY%/%DOCKER_IMAGE%:%DOCKER_TAG%'
+                    }
                 }
             }
         }
