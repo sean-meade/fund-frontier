@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django
+  template:
+    metadata:
+      labels:
+        app: django
+    spec:
+      containers:
+        - name: django
+          image: bannerroar/my_django_app:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_URL
+              value: "postgres://postgres:password@postgres-service:5432/mydb"
+            - name: HOSTED_SITE
+              value: "True"
+            - name: SECRET_KEY
+              value: "$cao@%ed^q5l95*h+y$5^e4gtp8*k)shmfba*iu%_y%@r_*gp#"
+            - name: CLOUDINARY_URL
+              value: "cloudinary://699847637393831:Mmj9N1QS5Nj6WrzMPP10gskYerc@smeade"

@@ -6,7 +6,7 @@ from .forms import Project_Form, Evaluation_Form
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-# TODO: Just realized none of this is filtered by user so everyone can see and edit each others projects
+# TODO: Just realized none of this is filtered by user so everyone can see each others projects
 
 def base(request):
     return render(request, 'npv/about.html')
