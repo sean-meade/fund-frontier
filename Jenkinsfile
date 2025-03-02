@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    bat 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
+                    bat 'docker build -t $DOCKER_IMAGE .'
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     bat 'docker-compose -f docker-compose.yml up -d db'
-                    bat 'docker run --rm $DOCKER_IMAGE:$DOCKER_TAG pytest'
+                    bat 'docker run --rm $DOCKER_IMAGE pytest'
                 }
             }
         }
