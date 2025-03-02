@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/sean-meade/fund-frontier'
+                git branch: 'fix-functionality-of-evaluations', url: 'https://github.com/sean-meade/fund-frontier'
             }
         }
 
