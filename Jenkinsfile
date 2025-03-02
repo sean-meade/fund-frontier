@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "my-django-app"
-        DOCKER_TAG = "my-django-app"
+        DOCKER_TAG = "latest"
         REGISTRY = "docker.io/bannerroar"
     }
 
@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    bat 'docker build -t my-django-app:my-django-app .'
+                    bat 'docker build -t %DOCKER_IMAGE%:%DOCKER_TAG% .'
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     bat 'docker-compose -f docker-compose.yml up -d db'
-                    bat 'docker run --rm $DOCKER_IMAGE:$DOCKER_TAG pytest'
+                    bat 'docker run --rm %DOCKER_IMAGE%:%DOCKER_TAG% pytest'
                 }
             }
         }
@@ -36,8 +36,8 @@ pipeline {
             steps {
                 script {
                     bat 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-                    bat 'docker tag $DOCKER_IMAGE:$DOCKER_TAG $REGISTRY/$DOCKER_IMAGE:$DOCKER_TAG'
-                    bat 'docker pubat $REGISTRY/$DOCKER_IMAGE:$DOCKER_TAG'
+                    bat 'docker tag %DOCKER_IMAGE%:%DOCKER_TAG% $REGISTRY/%DOCKER_IMAGE%:%DOCKER_TAG%'
+                    bat 'docker pubat $REGISTRY/%DOCKER_IMAGE%:%DOCKER_TAG%'
                 }
             }
         }
