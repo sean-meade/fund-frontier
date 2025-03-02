@@ -35,7 +35,7 @@ pipeline {
         stage('Pubat to DockerHub') {
             steps {
                 script {
-                    bat 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                    bat 'docker login -u $DOCKERHUB_USERNAME --password-stdin $DOCKERHUB_PASSWORD'
                     bat 'docker tag %DOCKER_IMAGE%:%DOCKER_TAG% $REGISTRY/%DOCKER_IMAGE%:%DOCKER_TAG%'
                     bat 'docker pubat $REGISTRY/%DOCKER_IMAGE%:%DOCKER_TAG%'
                 }
