@@ -32,15 +32,21 @@ pipeline {
         //     }
         // }
 
-        stage('Pubat to DockerHub') {
+        stage('Push to DockerHub') {
             steps {
                 script {
-                    bat 'docker login -u $DOCKERHUB_USERNAME --password-stdin $DOCKERHUB_PASSWORD'
-                    bat 'docker tag %DOCKER_IMAGE%:%DOCKER_TAG% $REGISTRY/%DOCKER_IMAGE%:%DOCKER_TAG%'
-                    bat 'docker pubat $REGISTRY/%DOCKER_IMAGE%:%DOCKER_TAG%'
+                    // Log in to Docker Hub securely
+                    bat 'echo %DOCKERHUB_PASSWORD% | docker login -u %DOCKERHUB_USERNAME% --password-stdin'
+                    
+                    // Tag the image with the registry name
+                    bat 'docker tag %DOCKER_IMAGE%:%DOCKER_TAG% %REGISTRY%/%DOCKER_IMAGE%:%DOCKER_TAG%'
+                    
+                    // Push the image to Docker Hub
+                    bat 'docker push %REGISTRY%/%DOCKER_IMAGE%:%DOCKER_TAG%'
                 }
             }
         }
+
 
         stage('Deploy to Kubernetes') {
             steps {
