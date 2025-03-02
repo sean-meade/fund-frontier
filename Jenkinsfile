@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "my_django_app"
+        DOCKER_IMAGE = "my-django-app"
         DOCKER_TAG = "latest"
         REGISTRY = "docker.io/bannerroar"
     }
