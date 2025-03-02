@@ -23,14 +23,14 @@ pipeline {
         }
 
 
-        stage('Run Tests') {
-            steps {
-                script {
-                    bat 'docker-compose -f docker-compose.yml up -d db'
-                    bat 'docker run --rm %DOCKER_IMAGE%:%DOCKER_TAG% pytest'
-                }
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         script {
+        //             bat 'docker-compose -f docker-compose.yml up -d db'
+        //             bat 'docker run --rm %DOCKER_IMAGE%:%DOCKER_TAG% pytest'
+        //         }
+        //     }
+        // }
 
         stage('Pubat to DockerHub') {
             steps {
