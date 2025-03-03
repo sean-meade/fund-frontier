@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: django
-          image: bannerroar/my_django_app:latest
+          image: bannerroar/my-django-app:latest
           ports:
             - containerPort: 8000
           env:
