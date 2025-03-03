@@ -326,21 +326,16 @@ input.currency::before {
 }
 
 /* Table Styling for evaluations */
-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
+
+.table-container {
+    margin: auto;
+    min-height: 40vh;
 }
 
 th, td {
     padding: 12px;
     border: 1px solid #ccc;
-    text-align: left;
-}
-
-th {
-    background-color: #0275d8;
-    color: rgb(234, 7, 7);
+    text-align: center;
 }
 
 tr:nth-child(even) {

@@ -3,27 +3,20 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="title">Edit Evaluation - {{eval_name}}</div>
+    <div class="calculator-headings">Edit Evaluation - {{eval_name}}</div>
 
-    <div class="col-md-5">
-        <div class="form-area">
+    <div class="site-container calculator-container col-md-6">
             {% comment %} TODO: Limit discount rate {% endcomment %}
             
-                <form action="{% url 'edit_evaluation' evaluation_id=evaluation_id %}" method="post">
-                <br style="clear:both">
-                <h4 style="margin-bottom: 25px; text-align: center;">Evaluation Details</h3>
+            <form class="site-form" action="{% url 'edit_evaluation' evaluation_id=evaluation_id %}" method="post">
+                <h4>Evaluation Details</h3>
                 {% csrf_token %}
                 <div id="forms">
                     {{ form.as_p }}
                 </div>
                 
-                <input type="submit" value="Save Changes">                
+                <button type="submit">Save Changes</button>
             </form>
-        </div>
-        </div>
     </div>
-
-</div>
 
 {% endblock %}

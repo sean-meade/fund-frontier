@@ -8,7 +8,7 @@ class Evaluation_Form(forms.Form):
 
 
 class Project_Form(forms.Form):
-    initial_investment = forms.FloatField(label="Initial investment", widget=forms.NumberInput(attrs={'type': 'number', 'class': 'currency'}))
+    initial_investment = forms.FloatField(label="Initial investment $", widget=forms.NumberInput(attrs={'type': 'number', 'class': 'currency'}))
     project_name = forms.CharField(label="Project Name")
     cash_flow_year_1 = forms.FloatField(label = "Cash flow year 1 $", widget=forms.NumberInput(attrs={'type': 'number', 'class': 'currency'}))
     cash_flow_year_count = forms.FloatField(widget=forms.HiddenInput())
